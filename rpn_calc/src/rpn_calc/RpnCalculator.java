@@ -8,7 +8,13 @@ import java.util.Scanner;
 
 public class RpnCalculator
 {
-	ArrayStack stack = new ArrayStack();
+	ArrayStack stack;
+	
+	RpnCalculator()
+	{
+		stack = new ArrayStack();
+	}
+
 	
 	
 	//take string s, may be double, may be operation
