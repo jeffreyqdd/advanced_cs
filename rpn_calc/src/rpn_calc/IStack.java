@@ -1,6 +1,8 @@
 package rpn_calc;
 
 
+
+
 public interface IStack {
 	void push(double value);
 	
@@ -10,13 +12,13 @@ public interface IStack {
 	
 	int size();
 	
-	boolean is_empty();
+	boolean isEmpty();
 	
-	public boolean is_full();
+	public boolean isFull();
 	
 	void clear();
 	
-	public String to_string();
+	public String toString();
 	
-	public String array_to_string();
+	public String arrayToString();
 }
