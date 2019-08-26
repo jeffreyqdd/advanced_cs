@@ -2,7 +2,8 @@ package rpn_calc;
 
 
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 
 public class RpnCalculator
@@ -97,23 +98,29 @@ public class RpnCalculator
 	
 	public static void main(String args[])
 	{	
+		
+		
 		//instance
 		var calculator = new RpnCalculator();
 		
-		//set file reads
-		File fileName = new File("input.txt");
-		Scanner sc = null;
+
 		
 
+		Scanner sc = null;
+		FileWriter writer = null;
+		
 		
 		try
 		{
 			//try to open file
-			sc = new Scanner(fileName);
+			sc = new Scanner(new File("expressions.txt"));
+			writer = new FileWriter(new File("output.txt"));
 			
-			while(sc.hasNext()) //for each line 
+			int kItems = Integer.parseInt(sc.nextLine());
+			for(int items = 0; items < kItems; items++) //for each line 
 			{
 				//read line
+	
 				String expression = sc.nextLine();
 				
 				//split line by space
@@ -131,29 +138,51 @@ public class RpnCalculator
 				}
 				//check if invalid
 				if(flag)
-					System.out.println("invalid input");
+				{
+					writer.write("Invalid\n");
+					//writer.flush();
+				}
 				else if(calculator.stack.size() != 1)
-					System.out.println("Invalid: Numbers are still left in the stack");
+				{
+					writer.write("Invalid: Numbers are still left in the stack\n");
+					//writer.flush();
+				}
 				else
 				{
+					//pop
+					double d = calculator.stack.pop();
+					
 					//display
-					System.out.println(calculator.stack.pop());
+					System.out.println("Valid");
+					
+					//write
+					writer.write(Double.toString(d) + '\n');
+					//writer.flush();
+
 				}
 				
 				//clear
 				calculator.stack.clear();
-				System.out.println();
 				
 			}
 		
 		}
-		catch (FileNotFoundException e)
+		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
 		finally
 		{
+			//close files
 			if(sc != null) sc.close();
+			if(writer != null)
+				try {
+					writer.flush();
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 		}
 
 	}

@@ -84,7 +84,7 @@ public class ArrayStack implements IStack {
 		//return the actual array
 		String s = new String();
 		
-		for(int i = 0; i < size(); i++)
+		for(int i = 0; i <= pointer; i++)
 		{
 			s = s + Double.toString(arrStack[i]) + " ";
 		}
