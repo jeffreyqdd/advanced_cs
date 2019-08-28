@@ -16,8 +16,8 @@ I am taking this class in my 11th grade year. I am currently new to Java and wil
 	1. Makes a class that works for any data type. Class A<T>{};
 
 
-
-#Stacks August 26 2019
+#Notes
+##Stacks August 26 2019
 
 Stacks are FIFO. Sort of like a plate dispenser. You push items to the top and you pop items from the top. 
 
@@ -25,4 +25,4 @@ Stacks are FIFO. Sort of like a plate dispenser. You push items to the top and y
 	2. pop() //returns the top value and moves the top down. Size is decreased by 1.
 	3. peek() //gets the top value. Does not change the size/top.
 	4. isFull(), isEmpty(), size() //self-explanatory.
-
+this concept is implemented in RPN calculator
