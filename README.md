@@ -1,17 +1,17 @@
 # advanced_cs
 # Welcome to this repository
-I am taking this class in my 11th grade year. I am currently new to Java and will be recording my notes from the class in this README
+I am taking this class in my 11th grade year. I am currently new to Java and will be recording my notes from the class in this README.
 
 
 # Java Basics
-## I am new to Java. Here are some personal notes to myself.
-## basic syntax
+I am new to Java. Here are some personal notes to myself.
+## Basic Syntax
 1. Java is a strictly object orientated language. It is also a compiled langauge. 
 2. public static void main() serves as a starting point for the program.
 3. always create an instance of the driver class to access methods. 
 4. class A implements interface. class Child extends BaseClass
 
-## generic classes
+## Generic Classes
 1. Makes a class that works for any data type. Class A<T>{};
 2. If initiating an array of type T, use an object arr. Java will cast it. When returning
 	a T value, cast the object to T. Suppress warnings bc it is guarenteed to work. Invalid
