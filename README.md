@@ -14,20 +14,25 @@ I am taking this class in my 11th grade year. I am currently new to Java and wil
 ## generic classes
 	1. Makes a class that works for any data type. Class A<T>{};
 	2. If initiating an array of type T, use an object arr. Java will cast it. When returning
-	   a T value, cast the object to T. Suppress warnings bc it is guarenteed to work. Invalid push calls are checked during compilation.
+	   a T value, cast the object to T. Suppress warnings bc it is guarenteed to work. Invalid
+	   push calls are checked during compilation.
 
-'''
+```Java
 @SuppressWarnings("unchecked")
 public T peek()
 {
 	return (T) arr[i];
 }
-'''
+```
 
 ## Exceptions: Checked vs unchecked - August 28 2019
 https://www.geeksforgeeks.org/checked-vs-unchecked-exceptions-in-java/
-	1. Checked are the exceptions checked at compile time. Method must handle the exception or it must specify it using _throws_. Exception is thrown to the method that called it. It must be prepared to handle the exception. If thrown to java virtual machine your program will crash.
-	2. Unchecked are not checked at compile time; therefore, you are not required to handle or specify it. Exceptions under _Error_ and _RuntimeException_ are unchecked.
+
+	1. Checked are the exceptions checked at compile time. Method must handle the exception or 
+	it must specify it using _throws_. Exception is thrown to the method that called it. It must 
+	be prepared to handle the exception. If thrown to java virtual machine your program will crash.
+	2. Unchecked are not checked at compile time; therefore, you are not required to handle or 
+	specify it. Exceptions under _Error_ and _RuntimeException_ are unchecked.
 
 # Projects
 ## Stacks - August 26 2019
