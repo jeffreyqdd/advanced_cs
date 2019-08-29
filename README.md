@@ -29,10 +29,10 @@ public T peek()
 https://www.geeksforgeeks.org/checked-vs-unchecked-exceptions-in-java/
 
 	1. Checked are the exceptions checked at compile time. Method must handle the exception or 
-	it must specify it using _throws_. Exception is thrown to the method that called it. It must 
+	it must specify it using *throws*. Exception is thrown to the method that called it. It must 
 	be prepared to handle the exception. If thrown to java virtual machine your program will crash.
 	2. Unchecked are not checked at compile time; therefore, you are not required to handle or 
-	specify it. Exceptions under _Error_ and _RuntimeException_ are unchecked.
+	specify it. Exceptions under *Error* and *RuntimeException* are unchecked.
 
 # Projects
 ## Stacks - August 26 2019
@@ -43,6 +43,7 @@ Stacks are FIFO. Sort of like a plate dispenser. You push items to the top and y
 	2. pop() //returns the top value and moves the top down. Size is decreased by 1.
 	3. peek() //gets the top value. Does not change the size/top.
 	4. isFull(), isEmpty(), size() //self-explanatory.
+	
 this concept is implemented in RPN calculator
 
 
