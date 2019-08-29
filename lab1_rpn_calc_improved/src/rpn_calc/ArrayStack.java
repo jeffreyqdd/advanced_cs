@@ -45,7 +45,7 @@ public class ArrayStack<T> implements IStack<T> {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public T peek() {
+	public T peek(){
 		//verify if there is a valid value. Returns that value, returns 0 otherwise.
 		
 		if(isEmpty())
