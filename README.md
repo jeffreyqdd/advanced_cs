@@ -12,11 +12,15 @@ I am new to Java. Here are some personal notes to myself.
 4. class A implements interface. class Child extends BaseClass
 
 ## Generic Classes
-1. Makes a class that works for any data type. Class A<T>{};
-2. If initiating an array of type T, use an object arr. Java will cast it. When returning
-	a T value, cast the object to T. Suppress warnings bc it is guarenteed to work. Invalid
-	push calls are checked during compilation.
+1. Makes a class that works for any data type. 
+```Java
+public Class A<T>{};
+```
 
+2. Only time it gets confusing: If initiating an array of type T, use an object arr. Java will cast it. When returning a T value, cast the object to T. Suppress warnings bc it is guarenteed to work. Invalid push calls are checked during compilation.
+3. "new" is run time.
+4. Using the angle bracket yields a advantage. Makes casting a compiler error rather than a runtime error.
+5. Can cast primitive to object.
 ```Java
 @SuppressWarnings("unchecked")
 public T peek()
@@ -28,12 +32,9 @@ public T peek()
 ## Exceptions: Checked vs unchecked - August 28 2019
 https://www.geeksforgeeks.org/checked-vs-unchecked-exceptions-in-java/
 
-1. Checked are the exceptions checked at compile time. Method must handle the exception or 
-it must specify it using *throws*. Exception is thrown to the method that called it. It must 
-be prepared to handle the exception. If thrown to java virtual machine your program will crash.
+1. Checked are the exceptions checked at compile time. Method must handle the exception or it must specify it using *throws*. Exception is thrown to the method that called it. It must be prepared to handle the exception. If thrown to java virtual machine, your program will crash.
 
-2. Unchecked are not checked at compile time; therefore, you are not required to handle or 
-specify it. Exceptions under *Error* and *RuntimeException* are unchecked.
+2. Unchecked are not checked at compile time; therefore, you are not required to handle or specify it. Exceptions under *Error* and *RuntimeException* are unchecked.
 
 # Projects
 ## Stacks - August 26 2019
