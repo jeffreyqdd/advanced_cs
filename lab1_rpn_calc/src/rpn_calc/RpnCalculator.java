@@ -109,11 +109,8 @@ public class RpnCalculator
 		//instance
 		var calculator = new RpnCalculator();
 		
-
-		
-
 		Scanner sc = null;
-		FileWriter writer = null;
+		FileWriter writer = null; 
 		
 		
 		try
@@ -125,8 +122,7 @@ public class RpnCalculator
 			int kItems = Integer.parseInt(sc.nextLine());
 			for(int items = 0; items < kItems; items++) //for each line 
 			{
-				//read line
-	
+				//read line\
 				String expression = sc.nextLine();
 				
 				//split line by space

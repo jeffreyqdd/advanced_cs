@@ -9,7 +9,7 @@ public class RpnCalculator
 {
 	ArrayStack<Double> stack;
 	
-	RpnCalculator()
+	RpnCalculator() //default
 	{
 		stack = new ArrayStack<Double>();
 	}
@@ -109,7 +109,7 @@ public class RpnCalculator
 				flag = calculator.process(split[i]);
 					
 				if(flag)
-					break;
+					 break;
 			}
 			//check if invalid
 			if(flag)
