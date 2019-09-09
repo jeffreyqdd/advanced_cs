@@ -1,39 +1,78 @@
 package lab3_Guitar_Hero;
 
-public class GuitarHero {
-	 public static void main(String[] args) {
-	        // Create two guitar strings, for concert A and C
-	        double CONCERT_A = 440.0;
-	        double CONCERT_C = CONCERT_A * Math.pow(2, 3.0/12.0);
-	        GuitarString stringA = new GuitarString(CONCERT_A);
-	        GuitarString stringC = new GuitarString(CONCERT_C);
 
-	        System.out.println(stringA.rb.size());
-	        System.out.println(stringC.rb.size());
-	        // the main input loop
+public class GuitarHero{
+	GuitarString[] notes;
+	GuitarHeroVisualizer image;
+	char currentKey;
+	GuitarHero()
+	{
+		notes = new GuitarString[37];
+		image = new GuitarHeroVisualizer();
+		
+		
+		currentKey = '~';
+		
+		//fill with empty sounds;
+		for(int i = 0; i < notes.length; i++)
+			notes[i] = new GuitarString(440 * Math.pow(1.05956, i-24));
+	}
+
+	int convert(char key)
+	{
+		char[] keyboard = {'q','2','w','e','4','r','5','t','y','7','u','8',
+                'i','9','o','p','-','[','=','z','x','d','c','f',
+                'v','g','b','n','j','m','k',',','.',';','/',
+                '\'',' ' };
+		
+		for(int i = 0; i < keyboard.length; i++)
+		{
+			if(keyboard[i] == key)
+				return i;
+		}
+		
+		return -1; //not found
+	}
+	
+	//plucks the strings
+	void play(char str)
+	{
+		int toInt = convert(str);
+		if(toInt != -1) System.out.println(toInt);
+		if(toInt == -1)
+			return;
+		
+		notes[toInt].pluck();
+	}
+	
+	public static void main(String[] args) {
+		 	var player = new GuitarHero();
+		 	
+		 	
 	        while (true) 
 	        {
+			 	player.currentKey = '~';
+				if(StdDraw.hasNextKeyTyped()) player.currentKey = StdDraw.nextKeyTyped();
 
-	            // check if the user has typed a key, and, if so, process it
-	            if (StdDraw.hasNextKeyTyped()) {
-	 
-	                // the user types this character
-	                char key = StdDraw.nextKeyTyped();
+				player.play(player.currentKey);
 
-	                // pluck the corresponding string
-	                if (key == 'a') { stringA.pluck(); }
-	                if (key == 'c') { stringC.pluck(); }
-	            }
 
 	            // compute the superposition of the samples
-	            double sample = stringA.sample() + stringC.sample();
+	            double sample = 0;
+	            for(int i = 0; i < player.notes.length; i++)
+	            	sample += player.notes[i].sample();
 
 	            // send the result to standard audio
 	            StdAudio.play(sample);
 
 	            // advance the simulation of each guitar string by one step
-	            stringA.tic();
-	            stringC.tic();
+	            for(int i = 0; i < player.notes.length; i++)
+	            {
+	            	player.notes[i].tic();
+	            }
+	            
+	            
+	   
 	        }
 	}
 }
