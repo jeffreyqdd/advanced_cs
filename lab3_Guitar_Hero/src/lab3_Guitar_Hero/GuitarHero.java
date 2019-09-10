@@ -1,17 +1,14 @@
 package lab3_Guitar_Hero;
 
 
-public class GuitarHero{
+public class GuitarHero implements Runnable{
 	GuitarString[] notes;
-	GuitarHeroVisualizer image;
-	char currentKey;
+	RingBuffer data;
+	
 	GuitarHero()
 	{
 		notes = new GuitarString[37];
-		image = new GuitarHeroVisualizer();
-		
-		
-		currentKey = '~';
+		data = new RingBuffer(100);
 		
 		//fill with empty sounds;
 		for(int i = 0; i < notes.length; i++)
@@ -34,7 +31,7 @@ public class GuitarHero{
 		return -1; //not found
 	}
 	
-	//plucks the strings
+	//Pluck the strings
 	void play(char str)
 	{
 		int toInt = convert(str);
@@ -44,35 +41,57 @@ public class GuitarHero{
 		
 		notes[toInt].pluck();
 	}
+	//gets values
 	
-	public static void main(String[] args) {
-		 	var player = new GuitarHero();
-		 	
-		 	
-	        while (true) 
-	        {
-			 	player.currentKey = '~';
-				if(StdDraw.hasNextKeyTyped()) player.currentKey = StdDraw.nextKeyTyped();
 
-				player.play(player.currentKey);
-
-
-	            // compute the superposition of the samples
-	            double sample = 0;
-	            for(int i = 0; i < player.notes.length; i++)
-	            	sample += player.notes[i].sample();
-
-	            // send the result to standard audio
-	            StdAudio.play(sample);
-
-	            // advance the simulation of each guitar string by one step
-	            for(int i = 0; i < player.notes.length; i++)
-	            {
-	            	player.notes[i].tic();
-	            }
-	            
-	            
-	   
-	        }
+	double[] get_sample()
+	{
+		double[] arr = new double[data.length()];
+		
+		for(int i = 0; i < data.length();i++)
+		{
+			arr[i] = data.arr[i];
+		}
+		
+		return arr;
+	}
+	
+	
+	
+	//multithreading
+	public void run()
+	{	
+		while(true)
+		{
+			
+			char currentKey = '~';
+			
+			if(StdDraw.hasNextKeyTyped()) currentKey = StdDraw.nextKeyTyped();
+	
+			play(currentKey);
+	
+	
+		    // compute the super position of the samples
+		    double sample = 0;
+		    for(int i = 0; i < notes.length; i++)
+		    	sample += notes[i].sample();
+	
+		   
+		    // send the result to standard audio
+		    StdAudio.play(sample);
+		    
+		    //update data
+		    if(data.isFull())
+		    	data.dequeue();
+		    data.enqueue(sample);
+		         
+		    // advance the simulation of each guitar string by one step
+		    for(int i = 0; i < notes.length; i++)
+		    {
+		        notes[i].tic();
+		    }
+	    
+		}
+	           
 	}
 }

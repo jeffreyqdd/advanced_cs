@@ -1,37 +1,37 @@
 package lab3_Guitar_Hero;
 
-public class GuitarHeroVisualizer{
+public class GuitarHeroVisualizer implements Runnable{
 
-	RingBuffer image;
-	GuitarHeroVisualizer()
+
+	double[] data;
+	double[] copied;
+ 	GuitarHeroVisualizer()
 	{
-
-        
         StdDraw.setPenRadius(0.005);
-        StdDraw.setPenColor(StdDraw.BLUE);
-        image = new RingBuffer(40);
-	}
-	void update(double sample)
-	{
-		if(image.isFull())
-			image.dequeue();
-		image.enqueue(sample);
+        StdDraw.enableDoubleBuffering();
 	}
 	
-	void render()
+	public void run()
 	{
-		StdDraw.clear();
-		for(double i = 0; i < image.size()-1;i++)
+		while(true)
 		{
-			int scale = image.length();
-
+			//first copy
+			
+			double[] copied = data;
 			
 			
-			StdDraw.line((i)/scale, image.arr[(int)i]/4 + 0.5,
-					(i+1)/scale, image.arr[(int)i + 1]/4 + 0.5);
-
+			//draw
+			StdDraw.show();
+			StdDraw.clear();
+			for(double i = 0; i < copied.length-1; i++)
+			{
+				
+				StdDraw.setPenColor(StdDraw.BLUE);
+				
+				StdDraw.line(i/copied.length, (copied[(int) i] / 2) + 0.5,
+						(i+1)/copied.length, (copied[(int) (i+1)] / 2) + 0.5);
+			}
+			
 		}
 	}
-
-
 }

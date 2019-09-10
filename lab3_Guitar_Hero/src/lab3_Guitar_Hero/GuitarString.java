@@ -2,7 +2,7 @@ package lab3_Guitar_Hero;
 
 
 public class GuitarString {
-
+	
     private static final double SAMPLE_RATE = 44100;
     private static final double DECAY_RATE =  0.95;
     
