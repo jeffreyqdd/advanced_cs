@@ -8,7 +8,7 @@ public class GuitarHero implements Runnable{
 	GuitarHero()
 	{
 		notes = new GuitarString[37];
-		data = new RingBuffer(100);
+		data = new RingBuffer(500);
 		
 		//fill with empty sounds;
 		for(int i = 0; i < notes.length; i++)
@@ -35,7 +35,7 @@ public class GuitarHero implements Runnable{
 	void play(char str)
 	{
 		int toInt = convert(str);
-		if(toInt != -1) System.out.println(toInt);
+		//if(toInt != -1) System.out.println(toInt);
 		if(toInt == -1)
 			return;
 		

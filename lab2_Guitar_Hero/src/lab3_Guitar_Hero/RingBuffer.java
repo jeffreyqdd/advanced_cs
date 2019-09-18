@@ -2,11 +2,13 @@ package lab3_Guitar_Hero;
 
 
 
+
+
 public class RingBuffer {
 
 
 	double[] arr;
-	int first, last;
+	int first, last, size;
 	
 	RingBuffer(int capacity)
 	
@@ -14,11 +16,12 @@ public class RingBuffer {
 		arr = new double[capacity];
 		first = 0;
 		last = 0;
+		size = 0;
 	}
 	// return number of items currently in the buffer	
 	int size()
 	{
-		return last - first;
+		return size;
 	}
 	
 	int length()
@@ -33,33 +36,23 @@ public class RingBuffer {
 	//return true if full
 	boolean isFull()
 	{
-		return size() == arr.length;
+		return size == arr.length;
 	}
 	
-	//shifts first back to index 0
-	void wrap()
-	{
-		int newPos, oldPos;
-		for(newPos = 0, oldPos = first; oldPos < last; newPos++, oldPos++)
-			arr[newPos] = arr[oldPos];
-	
-		
-		first = 0;
-		last = newPos;
-	}
 	//add to queue
 	void enqueue(double x)
 	{
-		if(last >= arr.length && first > 0) {
-			wrap();
-		}
 		
 		if(isFull())
 			throw new IllegalStateException();
 		
 		arr[last] = x;
+		
+		size++;
 		last++;
 		
+		last = last % arr.length;
+
 	
 
 		
@@ -69,11 +62,12 @@ public class RingBuffer {
 	double dequeue()
 	{
 		double top = peek();
-		
-		//debug only
-		//arr[first] = 0;
-		
+	
 		first++;
+		size--;
+		first = first % arr.length;
+		
+
 		
 		return top;
 	}
@@ -96,4 +90,3 @@ public class RingBuffer {
 		return s;
 	}
 }
-

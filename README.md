@@ -39,7 +39,7 @@ https://www.geeksforgeeks.org/checked-vs-unchecked-exceptions-in-java/
 # Projects
 ## Stacks - August 26 2019
 
-Stacks are FIFO. Sort of like a plate dispenser. You push items to the top and you pop items from the top. 
+Stacks are FILO, sort of like a plate dispenser. You push items to the top and you pop items from the top. 
 
 1. push() //adds to the top of the arrayStack. Increases size by 1.
 2. pop() //returns the top value and moves the top down. Size is decreased by 1.
@@ -48,7 +48,14 @@ Stacks are FIFO. Sort of like a plate dispenser. You push items to the top and y
 
 this concept is implemented in RPN calculator
 
+## Queues - September 18 2019
 
+Queues are FIFO, sort of like a lunch line. You push the items to the back and pop from the from. The wrap around is done by % ArrayQueue size
+
+1. enqueue() //adds to the queue
+2. dequeue() //subtracts from the queue
+3. peek() //gets from. Does not pop
+4. isFull(), isEmpty(), size(), length() //size is current array, length is total length of array
 
 
 

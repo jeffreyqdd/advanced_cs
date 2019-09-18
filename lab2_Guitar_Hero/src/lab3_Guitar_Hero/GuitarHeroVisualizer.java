@@ -4,7 +4,7 @@ public class GuitarHeroVisualizer implements Runnable{
 
 
 	double[] data;
-	double[] copied;
+	//double[] copied;
  	GuitarHeroVisualizer()
 	{
         StdDraw.setPenRadius(0.005);
@@ -13,6 +13,12 @@ public class GuitarHeroVisualizer implements Runnable{
 	
 	public void run()
 	{
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		
 		while(true)
 		{
 			//first copy

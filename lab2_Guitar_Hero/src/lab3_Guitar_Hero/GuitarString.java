@@ -4,7 +4,8 @@ package lab3_Guitar_Hero;
 public class GuitarString {
 	
     private static final double SAMPLE_RATE = 44100;
-    private static final double DECAY_RATE =  0.95;
+    private static final double DECAY_RATE =  0.97;
+    private static final double AMPLITUDE = 1;
     
     RingBuffer rb;
     int totalTick;
@@ -36,7 +37,7 @@ public class GuitarString {
 	{
 		for(int i = 0; i < rb.length(); i++)
 		{
-			double random = Math.random() - 0.5; //[-0.5,0.5)
+			double random = (Math.random() - 0.5) * AMPLITUDE; //[-0.5,0.5)
 			rb.dequeue();
 			rb.enqueue(random);
 		}
@@ -49,8 +50,8 @@ public class GuitarString {
 		if(!rb.isEmpty())
 		{
 			double a = rb.dequeue(), b = rb.peek();
-		
-			double newItem = 0.5 * DECAY_RATE * (a + b);
+
+			double newItem = DECAY_RATE * 0.5 * (a+b);
 		
 			rb.enqueue(newItem);
 		}

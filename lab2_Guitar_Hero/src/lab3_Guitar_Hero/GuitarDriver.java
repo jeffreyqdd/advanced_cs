@@ -2,13 +2,6 @@ package lab3_Guitar_Hero;
 
 public class GuitarDriver {
 
-	
-	
-	GuitarDriver()
-	{
-		
-	}
-
 	public static void main(String[] args) {
 		
 		GuitarHero player = new GuitarHero();
@@ -19,17 +12,18 @@ public class GuitarDriver {
 		
 		
 		sounds.start();
+		
+		
+		
+		
 		waves.start();
 		
 		while(true)
 		{
-			double[] meow = player.get_sample();
+			double[] cp = player.get_sample();
 			
-			image.data = meow;
+			image.data = cp;
 		}
-		
-		
-			
 			
 
 	}
