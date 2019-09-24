@@ -58,6 +58,4 @@ Queues are FIFO, sort of like a lunch line. You push the items to the back and p
 4. isFull(), isEmpty(), size(), length() //size is current array, length is total length of array
 
 
-
-
-----this is a test ---
+## Linked Lists - September 24 2019
