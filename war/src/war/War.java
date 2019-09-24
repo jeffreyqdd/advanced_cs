@@ -137,7 +137,7 @@ class War {
 			String[] p1HandSplit = p1Hand.split(" ");
 			String[] p2HandSplit = p2Hand.split(" ");
 			
-			var Game = new War(); //implies that game is reset
+			War Game = new War(); //implies that game is reset
 			
 			for(int i = 0; i < p1HandSplit.length; i++)
 			{

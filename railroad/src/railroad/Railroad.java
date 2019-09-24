@@ -1,7 +1,7 @@
 package railroad;
 
 import java.io.File;
-import java.io.FileWriter;
+//import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -30,7 +30,7 @@ public class Railroad {
 			int wanted = numbers[i];
 			//check if wanted = top
 			//shortcut behavior
-			System.out.println(stack.toStr());
+			//System.out.println(stack.toStr());
 			
 			if(stack.size() > 0 && stack.peek() == wanted)
 			{
@@ -51,9 +51,10 @@ public class Railroad {
 	public static void main(String[] args) throws IOException{
 		
 		Scanner sc = new Scanner(new File("railroad.dat"));
-		FileWriter writer = new FileWriter(new File("railroad.out"));
+		//FileWriter writer = new FileWriter(new File("railroad.out"));
 		
-		var RObj = new Railroad(); 
+		Railroad RObj = new Railroad(); 
+		
 		
 		//read until double null termination
 		while(true)
@@ -72,7 +73,8 @@ public class Railroad {
 
 				if(perm[0].equals("0"))
 				{
-					writer.write("\n");
+					//writer.write('\n')
+					System.out.println();
 					break;
 				}
 				
@@ -84,7 +86,8 @@ public class Railroad {
 				
 				//solve
 				String result = RObj.solve(split, kNumCoaches);
-				writer.write(result + '\n');
+				/*writer.write(result + '\n');*/
+				System.out.println(result);
 			}
 			
 			
@@ -94,7 +97,7 @@ public class Railroad {
 		
 		//close
 		//writer.flush();
-		writer.close();
+		//writer.close();
 		sc.close();
 
 	}

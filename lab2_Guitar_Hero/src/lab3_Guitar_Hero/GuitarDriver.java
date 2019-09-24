@@ -24,7 +24,7 @@ public class GuitarDriver {
 			
 			image.data = cp;
 		}
-			
+		
 
 	}
 

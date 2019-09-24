@@ -20,6 +20,7 @@ public class NodeTester {
 		
 		
 		//print ---
+		System.out.println("Printing--------");
 		Actor ptr = bob;
 		
 		while(ptr.getNextPtr() != null)
@@ -28,6 +29,10 @@ public class NodeTester {
 			ptr = ptr.getNextPtr();
 		} 
 		System.out.println(ptr.getName());
+		
+		
+		System.out.println("\nTo string method --------");
+		System.out.println(bob.toString());
 		
 	}
 }

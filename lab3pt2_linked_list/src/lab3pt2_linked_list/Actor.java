@@ -1,4 +1,4 @@
-package lab3_linked_list;
+package lab3pt2_linked_list;
 
 class Actor {
 
@@ -7,8 +7,8 @@ class Actor {
 	
 	Actor(String name)
 	{
-		m_name = name;
-		m_next = null;
+		this.m_name = name;
+		this.m_next = null;
 	}
 	
 	//return name

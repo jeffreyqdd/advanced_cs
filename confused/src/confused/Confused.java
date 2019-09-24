@@ -1,7 +1,7 @@
 package confused;
 
 import java.io.File;
-import java.io.FileWriter;
+//import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -26,14 +26,14 @@ public class Confused {
 		
 				if(item.equals("(") || item.equals("["))
 				{
-					System.out.println(item+ ": push");
+					//System.out.println(item+ ": push");
 					stack.push(item);
 				}
 				//if close pop and check
 				if(item.equals(")") || item.equals("]"))
 				{
 					String prev = stack.pop();
-					System.out.println(item+ ": pop");
+					//System.out.println(item+ ": pop");
 					//System.out.println(stack.size());
 					
 					if(prev.equals("(") && item.equals("]") )
@@ -48,7 +48,7 @@ public class Confused {
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getStackTrace());
+			//System.out.println(e.getStackTrace());
 			return "No";
 		}
 		
@@ -60,10 +60,10 @@ public class Confused {
 	
 	public static void main(String[] args) throws IOException{
 		Scanner sc = null;
-		FileWriter writer = null;
+		//FileWriter writer = null;
 		
 		sc = new Scanner(new File("confused.dat"));
-		writer = new FileWriter(new File("out.txt"));
+		//writer = new FileWriter(new File("out.txt"));
 		
 		var ConfusedObj = new Confused();
 		
@@ -75,19 +75,16 @@ public class Confused {
 			String expression = sc.nextLine();
 			String[] split = expression.split("");
 			
-			for(int j = 0; j < split.length; j++)
-				System.out.print(split[j] + " ");
-			System.out.print('\n');
-			
 			String answer = ConfusedObj.solve(split);
 			
-			writer.write(answer + "\n");
+			System.out.println(answer);
+			//writer.write(answer + "\n");
 		}
 		
-		writer.flush();
+		//writer.flush();
 		
 		sc.close();
-		writer.close();
+		//writer.close();
 
 	}
 	
