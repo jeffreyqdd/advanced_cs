@@ -59,3 +59,4 @@ Queues are FIFO, sort of like a lunch line. You push the items to the back and p
 
 
 ## Linked Lists - September 24 2019
+
