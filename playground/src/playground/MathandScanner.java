@@ -1,16 +1,12 @@
 package playground;
-
 import java.util.*;
 import java.awt.*;
-
-public class HelloWorld {
+public class MathandScanner {
 public static void main (String[] args) {
    Scanner console = new Scanner(System.in);
    DrawingPanel panel = new DrawingPanel (300, 300);
    Graphics g = panel.getGraphics();
-   //placeCircles(console, g);
-   printPowersOfN(console);
-   
+   placeCircles(console, g);
    }
       public static void placeCircles(Scanner console, Graphics g) {
       System.out.println ("How many circles do you want?");
@@ -26,7 +22,8 @@ public static void main (String[] args) {
       
       }
 } 
-   public static void printPowersOfN(Scanner console) {
+   public void
+   printPowersOfN(Scanner console) {
    System.out.println ("Enter the base:");
    int base = console.nextInt();
    System.out.println ("Enter the max exponent:");
@@ -34,8 +31,8 @@ public static void main (String[] args) {
    for (int j = 1; j <= exponent; j++); {
    Math.pow (base, exponent);
    }
-   System.out.println ("First " + exponent+  "powers of" + base + ":");
- 
+   System.out.println ("First 4 powers of 5:");
+   int powers = console.nextInt();
 } 
 }
 
