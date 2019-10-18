@@ -36,6 +36,22 @@ https://www.geeksforgeeks.org/checked-vs-unchecked-exceptions-in-java/
 
 2. Unchecked are not checked at compile time; therefore, you are not required to handle or specify it. Exceptions under *Error* and *RuntimeException* are unchecked.
 
+
+## Interclasses: October 18 2019
+1. Essentially a class within a class
+2. Denoted by a $ sign in the .class files
+
+```Java
+public class LinkedList<T>
+{
+	//linked List code
+	private class Node<U>
+	{
+		//node code
+	}
+}
+```
+
 # Projects
 ## Stacks - August 26 2019
 
@@ -59,4 +75,18 @@ Queues are FIFO, sort of like a lunch line. You push the items to the back and p
 
 
 ## Linked Lists - September 24 2019
+
+1. Have a node that contains data and a reference to the next node
+2. To traverse a single linked list, start at head and set current pointer to current pointer.next();
+3. Many different types of constructors
+4. addFront();
+5. peekFront();
+6. popFront();
+7. addBack();
+8. peekBack();
+9. popBack();
+10. get(int idnex); //O(n)
+11. add(int index); //O(n)
+12. Anything to do with the back as a time complexity of O(n) while everything to do with the front has a    	time complexity of O(1);
+
 
