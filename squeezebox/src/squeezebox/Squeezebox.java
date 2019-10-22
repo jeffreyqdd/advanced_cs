@@ -79,12 +79,12 @@ public class Squeezebox {
 		{
 			change = false; 
 			
-			for(int i = 0; i < table.size(); i++)
+			/*for(int i = 0; i < table.size(); i++)
 			{
 				System.out.print(table.get(i).toString() + " ");
 			}
-			System.out.println();
-			
+			System.out.println();*/
+			                                                    
 			
 			//simulate, we can't look left of 1
 			for(int i = 1; i < table.size(); i++) 

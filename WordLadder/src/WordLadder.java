@@ -120,6 +120,7 @@ public class WordLadder {
 		ArrayList<Pair> problem = new ArrayList<Pair>();
 		HashSet<String> dictionary = new HashSet<String>();
 		
+
 		while(inputSc.hasNextLine())
 		{
 			String s = inputSc.nextLine();
@@ -128,7 +129,7 @@ public class WordLadder {
 		}
 		while(dictSc.hasNextLine())
 			dictionary.add(dictSc.nextLine());
-
+		//System.out.println(dictionary.size());
 		inputSc.close();
 		dictSc.close();
 		
