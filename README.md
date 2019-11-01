@@ -6,7 +6,7 @@ I am taking this class in my 11th grade year. I am currently new to Java and wil
 # Java Basics
 I am new to Java. Here are some personal notes to myself.
 ## Basic Syntax
-1. Java is a strictly object orientated language. It is also a compiled langauge. 
+1. Java is a strictly object orientated language. It is also a compiled language. 
 2. public static void main() serves as a starting point for the program.
 3. always create an instance of the driver class to access methods. 
 4. class A implements interface. class Child extends BaseClass
@@ -17,7 +17,7 @@ I am new to Java. Here are some personal notes to myself.
 public Class A<T>{};
 ```
 
-2. Only time it gets confusing: If initiating an array of type T, use an object arr. Java will cast it. When returning a T value, cast the object to T. Suppress warnings bc it is guarenteed to work. Invalid push calls are checked during compilation.
+2. Only time it gets confusing: If initiating an array of type T, use an object arr. Java will cast it. When returning a T value, cast the object to T. Suppress warnings bc it is guaranteed to work. Invalid push calls are checked during compilation.
 3. "new" is run time.
 4. Using the angle bracket yields a advantage. Makes casting a compiler error rather than a runtime error.
 5. Can cast primitive to object.
@@ -85,8 +85,20 @@ Queues are FIFO, sort of like a lunch line. You push the items to the back and p
 7. addBack();
 8. peekBack();
 9. popBack();
-10. get(int idnex); //O(n)
+10. get(int index); //O(n)
 11. add(int index); //O(n)
-12. Anything to do with the back as a time complexity of O(n) while everything to do with the front has a    	time complexity of O(1);
+12. Anything to do with the back as a time complexity of O(n) while everything to do with the front has a time complexity of O(1);
 
+## HashTables - November 1 2019
+
+Imagine this. You are in charge of designing a data center to store all the student records by ID number. You have a brilliant idea...use an array, with each index corresponding to each ID number. However, the student IDs are 8 digits long meaing that you will have an array size of 1 MILLION! Unfortunately, only .06% of this space will be used as there are 60,000 students in the district...what a waste of RAM.
+
+*problem* Sparse arrays, or low memory usage
+
+*solution* Cut out the ID numbers that are not used via a Hash Method
+> test block quote slkdfjsioxdkfjlskdfjnosdi xjlsdf lsjf lksdlsdljsdlkdslf sldk fjlsdk jflkds jlksdlksdjflkdslksdlkfjsdlkld sfldksjlksjlksj lfkdjs lksdfjl kjsdlkf ksldf jlkds jflsdkj ls
+dsflk jsdl
+df
+s
+dfs
 
