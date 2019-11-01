@@ -67,7 +67,6 @@ public class HashTable {
 	{
 		Object key, value;
 
-		@SuppressWarnings("unused")
 		Entry()
 		{
 			this.key = null;
@@ -78,5 +77,6 @@ public class HashTable {
 			this.key = key;
 			this.value = value;
 		}
+
 	}
 }
