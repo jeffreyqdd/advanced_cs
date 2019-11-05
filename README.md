@@ -97,7 +97,7 @@ Imagine this. You are in charge of designing a data center to store all the stud
 
 *solution* Cut out the ID numbers that are not used via a Hash Method H(key ) -> k, where k is the hash index, or index in the hash table.
 * Should maintain O(1) time for insertion and lookup.
-* We should also use a high percentage of the array.
+* We should also use a high percentage of the array. 
 
 
 
