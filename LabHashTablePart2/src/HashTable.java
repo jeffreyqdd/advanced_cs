@@ -3,15 +3,23 @@ public class HashTable
 	private Object[] arr;
 	private int size;
 	
+	public long probes;
+	
 	HashTable() // Sets default table size to 101
 	{
 		arr = new Object[101];
+		probes = 0;
 	}
 	HashTable(int initCap)
 	{
 		arr = new Object[initCap];
+		probes = 0;
 	}
 	//removes a certain entry
+	public Object remove(Entry e)
+	{
+		return remove(e.getKey(), e.getValue());
+	}
 	public Object remove(Object key, Object value)
 	{
 		int idx = key.hashCode() % arr.length;
@@ -42,6 +50,10 @@ public class HashTable
 	
 	// Returns the previous value associated with key,
 	// or null if there was no mapping for key
+	public Object put(Entry e)
+	{
+		return put(e.getKey(), e.getValue());
+	}
 	public Object put(Object key, Object value) throws IllegalStateException
 	{
 		//check if full
@@ -50,10 +62,12 @@ public class HashTable
 		
 		int idx = key.hashCode() % arr.length;
 		
-		
 		for(int i = idx, first= 0;i != idx || first == 0;)
 		{
+			
 			Entry e = (Entry)arr[i];
+			
+			probes++;
 			
 			if(e == null) //if loc is empty, replace, return null, and increment size
 			{
@@ -62,7 +76,7 @@ public class HashTable
 				return null;
 			}
 			
-			//check duplicate
+			//check duplicate, override
 			if(e.getValue().equals(key))
 			{
 				arr[i] = new Entry(key, value);
@@ -105,6 +119,10 @@ public class HashTable
 	
 	// Returns the value to which the specified key is mapped,
 	// or null if this map contains no mapping for the key
+	Object get(Entry e)
+	{
+		return get(e.getKey());
+	}
 	Object get(Object key)
 	{
 		int idx= key.hashCode() % arr.length;
@@ -113,6 +131,9 @@ public class HashTable
 		for(int i = idx, first= 0;i != idx || first == 0;)
 		{
 			Entry e = ((Entry) arr[i]);
+			
+			probes++;
+			
 			if(e == null) return null;
 			if(e.getKey().equals(key))
 				return e.getValue();
