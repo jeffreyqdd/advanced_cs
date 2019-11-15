@@ -16,11 +16,12 @@ public class HashTable
 		probes = 0;
 	}
 	//removes a certain entry
-	public Object remove(Object key, Object value)
+	public Object remove(Entry e) {return remove(e.getKey());}
+	public Object remove(Object key)
 	{
 		int idx = key.hashCode() % arr.length;
 		
-		Entry target = new Entry(key, value); //entry to be reemoved
+		
 		
 		for(int i = idx, first= 0;i != idx || first == 0;)
 		{
@@ -29,12 +30,14 @@ public class HashTable
 			
 			if(e == null) return null;
 			
-			if(e.getKey().equals(target.getKey()))
+			//System.out.println(i + " looking at" + e);
+			
+			if(e.getKey().equals(key))
 			{
-				((Entry) arr[idx]).markRemoved();
+				((Entry) arr[i]).markRemoved();
+				size--;
 				return e.getValue();
 			}
-			if(e == null) return null;
 			
 			i = (i + 1) % arr.length; //wrap around
 			first = 1;
@@ -46,13 +49,14 @@ public class HashTable
 	
 	// Returns the previous value associated with key,
 	// or null if there was no mapping for key
+	public Object put(Entry e){return put(e.getKey(), e.getValue());}
 	public Object put(Object key, Object value) throws IllegalStateException
 	{
 		//check if full
 		if(size == arr.length) throw new IllegalStateException("Out of memory");
-		
-		
+
 		int idx = key.hashCode() % arr.length;
+		
 		
 		for(int i = idx, first= 0;i != idx || first == 0;)
 		{
@@ -67,10 +71,11 @@ public class HashTable
 				size++;
 				return null;
 			}
-			
+			//System.out.println("probs: " + key + " " +value);
 			//check duplicate, override
-			if(e.getValue().equals(key))
+			if(e.getKey().equals(key))
 			{
+				System.out.println("overwrite");
 				arr[i] = new Entry(key, value);
 				return e.getValue();
 			}
@@ -80,6 +85,8 @@ public class HashTable
 			{
 				arr[i] = new Entry(key, value);
 				size++;
+				
+				//System.out.println();
 				
 				//remove repeats if any
 				for(int j = i + 1, first2 = 0 ;j != idx || first2 == 0;)
@@ -111,15 +118,16 @@ public class HashTable
 	
 	// Returns the value to which the specified key is mapped,
 	// or null if this map contains no mapping for the key
+	Object get(Entry e){return get(e.getKey());}
 	Object get(Object key)
 	{
 		int idx= key.hashCode() % arr.length;
-		
 		
 		for(int i = idx, first= 0;i != idx || first == 0;)
 		{
 			Entry e = ((Entry) arr[i]);
 			
+			//System.out.println("Probing: " + e);
 			probes++;
 			
 			if(e == null) return null;

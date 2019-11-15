@@ -18,13 +18,12 @@ public class HashTable
 	//removes a certain entry
 	public Object remove(Entry e)
 	{
-		return remove(e.getKey(), e.getValue());
+		return remove(e.getKey());
 	}
-	public Object remove(Object key, Object value)
+	public Object remove(Object key)
 	{
 		int idx = key.hashCode() % arr.length;
 		
-		Entry target = new Entry(key, value); //entry to be reemoved
 		
 		for(int i = idx, first= 0;i != idx || first == 0;)
 		{
@@ -33,7 +32,7 @@ public class HashTable
 			
 			if(e == null) return null;
 			
-			if(e.getKey().equals(target.getKey()))
+			if(e.getKey().equals(key))
 			{
 				((Entry) arr[idx]).markRemoved();
 				return e.getValue();
@@ -67,7 +66,7 @@ public class HashTable
 			
 			Entry e = (Entry)arr[i];
 			
-			probes++;
+			
 			
 			if(e == null) //if loc is empty, replace, return null, and increment size
 			{
@@ -75,6 +74,8 @@ public class HashTable
 				size++;
 				return null;
 			}
+			
+			probes++;
 			
 			//check duplicate, override
 			if(e.getValue().equals(key))

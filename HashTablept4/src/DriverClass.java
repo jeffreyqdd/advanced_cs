@@ -2,11 +2,67 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
+import java.io.FileWriter;
 import java.lang.System;
 
 
 public class DriverClass
 {
+	//it passes all the validation testing.
+	/*
+	public static void main(String[] args) throws IOException
+	{
+		Scanner sc = new Scanner(new File("test/put50.txt"));
+		
+		HashTable ht = new HashTable();
+		while(sc.hasNextLine())
+		{
+			String[] s = sc.nextLine().split(" ");
+			
+			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
+			ht.put(e);
+			
+		}
+		
+		
+		sc.close();
+		
+		sc = new Scanner(new File("test/remove10.txt"));
+
+		while(sc.hasNextLine())
+		{
+			String[] s = sc.nextLine().split(" ");
+			
+			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
+			ht.remove(e);
+			
+		}
+		
+		sc = new Scanner(new File("test/overwrite3.txt"));
+		while(sc.hasNextLine())
+		{
+			String[] s = sc.nextLine().split(" ");
+			
+			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
+			ht.put(e);
+			
+		}
+		
+		sc = new Scanner(new File("test/put10again.txt"));
+		while(sc.hasNextLine())
+		{
+			String[] s = sc.nextLine().split(" ");
+			
+			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
+			ht.put(e);
+			
+		}
+		
+		System.out.println(ht);
+	}
+	
+	*/
+	
 	
 	public static ArrayList<Entry> entries = new ArrayList<>();
 	public static ArrayList<Entry> successful = new ArrayList<>();
@@ -34,8 +90,17 @@ public class DriverClass
 		sc2.close();
 		sc3.close();
 		
-		//System.out.println(entries.get(0).getKey().hashCode());
+		/*for(Entry e : entries)
+			System.out.println(e.getKey() + " " + e.hashCode());*/
 		
+		//FileWriter wr =  new FileWriter(new File("oof.txt"));
+		
+		//wr.write(ht.toString());
+
+		//wr.close();
+		
+		//System.out.println(ht);
+		//System.out.println(ht.get(successful.get(0)));
 		
 		runSimulation();
 	}
@@ -44,33 +109,26 @@ public class DriverClass
 	public static void runSimulation()
 	{
 		//create a hash table of size htSize
-		int[] sizes = {5000000, 1000000, 625000, 555555, 500000};
+		int[] sizes = {500000, 100000, 62500, 55555, 50000};
 		
-		//for(int n : sizes)
-		//{
+		for(int n : sizes)
+		{
 			long start, stop;
-			HashTable ht = new HashTable(1000000);
+			HashTable ht = new HashTable(n);
 			
 			//start the put time
 			start = System.currentTimeMillis();
 			for (Entry e : entries)
-				ht.put(e.getKey(), e.getValue());
+				ht.put(e);
 			stop = System.currentTimeMillis();
 			long insertProbes = ht.probes;
 			ht.probes = 0;
 			long timeToLoad = stop - start;
-		
-		//SARDC81ITQW968387
 			
-			System.out.println(successful.get(0).getKey());
-			System.out.println(successful.get(0).getValue());
-			System.out.println(ht);
-			
-			//System.out.println(ht.get());
 			
 			//start the succ search time
-			/*start = System.currentTimeMillis();
-			for (Entry e : unsuccesesful)
+			start = System.currentTimeMillis();
+			for (Entry e : successful)
 				ht.get(e.getKey());
 			stop = System.currentTimeMillis();
 			long timeToSuccSearch = stop - start;
@@ -79,7 +137,7 @@ public class DriverClass
 			
 			//start the unsucc search time
 			start = System.currentTimeMillis();
-			for (Entry e : unsuccesesful)
+			for (Entry e : unsuccessful)
 				ht.get(e.getKey());
 			stop = System.currentTimeMillis();
 			long timeToUnsuccSearch = stop - start;
@@ -100,11 +158,11 @@ public class DriverClass
 			System.out.println(
 					"UNSUCCESSFUL SEARCH TIME-------\n" +
 							"Time: " + timeToUnsuccSearch + '\n' +
-							"Avg Probes: " + unsuccessfulProbe / unsuccesesful.size());
+							"Avg Probes: " + unsuccessfulProbe / unsuccessful.size());
 			
-			System.out.println("\n\n\n");*/
+			System.out.println("\n\n\n");
 			
-		//}
+		}
 		
 		
 	}

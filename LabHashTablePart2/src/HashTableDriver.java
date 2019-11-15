@@ -5,6 +5,47 @@ import java.io.IOException;
 
 public class HashTableDriver
 {
+	public static void main(String[] args)
+	{
+		HashTable table = new HashTable(17);
+		
+
+		
+		// collisions - 1 probe
+		table.put(48235250, "KENNITH GRASSMYER");
+		table.put(31850991, "WANETA DEWEES");
+		
+		System.out.println(table + " " + table.probes);
+		System.out.println(table + " " + table.probes);
+		
+		// insertions - no collisions
+		/*table.put(25428367, "DUSTY BANNON");
+		table.put(24248685, "FRANCE COELLO");
+		table.put(23331143, "JUSTIN ADKIN");
+		
+		// collisions - multiple probes
+		table.put(68682774, "MALIK TULLER");
+		table.put(59245514, "LESLEE PHIFER");
+		
+		// 2nd put for this key - replace FRANCE COELLO
+		// simple overwrite, no collisions
+		table.put(24248685, "ISAAC GENEY");
+		// remove DUSTY BANNON, simple, no collisions
+		table.remove(25428367);
+		// remove MALIK TULLER, collisions & invalid entry
+		table.remove(68682774);
+		// collisions  & invalid entry
+		table.put(54657809, "MARTY ENOCHS");
+		// remove JUSTIN ADKIN, simple, no collisions
+		table.remove(23331143);
+		
+		// 2nd put for this key - replace LESLEE PHIFER
+		// collisions, overwrite invalid entry, &
+		// invalidate original entry
+		table.put(59245514, "GENARO QUIDER");*/
+	}
+	
+	/*
 	public static void main(String[] args) throws IOException
 	{
 		Scanner sc1 = new Scanner(new File("chonk/Large Data Set.txt"));
@@ -39,7 +80,7 @@ public class HashTableDriver
 		
 		//create a hash table of size htSize
 		int[] sizes = {5000000, 1000000, 625000, 555555, 500010};
-		i
+		
 		
 		for(int n : sizes)
 		{
@@ -96,6 +137,6 @@ public class HashTableDriver
 		
 	}
 	
-	
+	*/
 	
 }
