@@ -1,16 +1,16 @@
-public class HashTable
+public class HashTable_Quadratic
 {
 	private Object[] arr;
 	private int size;
 	
 	public long probes;
 	
-	HashTable() // Sets default table size to 101
+	HashTable_Quadratic() // Sets default table size to 101
 	{
 		arr = new Object[101];
 		probes = 0;
 	}
-	HashTable(int initCap)
+	HashTable_Quadratic(int initCap)
 	{
 		arr = new Object[initCap];
 		probes = 0;
@@ -23,7 +23,7 @@ public class HashTable
 		
 		
 		
-		for(int i = idx, first= 0;i != idx || first == 0;)
+		for(int i = idx, first= 0, collisions = 0;i != idx || first == 0;)
 		{
 			
 			Entry e = (Entry) arr[i];
@@ -39,7 +39,9 @@ public class HashTable
 				return e.getValue();
 			}
 			
-			i = (i + 1) % arr.length; //wrap around
+			collisions++;
+			i = (int) Math.pow((i + collisions), 2) % arr.length; //wrap around
+			
 			first = 1;
 		}
 		return null;
@@ -54,11 +56,11 @@ public class HashTable
 	{
 		//check if full
 		if(size == arr.length) throw new IllegalStateException("Out of memory");
-
+		
 		int idx = key.hashCode() % arr.length;
 		
 		
-		for(int i = idx, first= 0;i != idx || first == 0;)
+		for(int i = idx, first= 0, collisions = 0;i != idx || first == 0;)
 		{
 			
 			Entry e = (Entry) arr[i];
@@ -89,7 +91,7 @@ public class HashTable
 				//System.out.println();
 				
 				//remove repeats if any
-				for(int j = i + 1, first2 = 0 ;j != idx || first2 == 0;)
+				for(int j = i + 1, first2 = 0, collisions2 = collisions ;j != idx || first2 == 0;)
 				{
 					Entry possible = (Entry) arr[j];
 					
@@ -100,7 +102,9 @@ public class HashTable
 						return possible.getValue();
 					}
 					
-					j = (j + 1) % arr.length; //wrap around
+					collisions2++;
+					j = (int) Math.pow((i + collisions), 2) % arr.length; //wrap around
+					
 					first2 = 1;
 				}
 				
@@ -108,8 +112,9 @@ public class HashTable
 				return null;
 			}
 			
-			
-			i = (i + 1) % arr.length; //wrap around
+			collisions++;
+			i = (int) Math.pow((i + collisions), 2) % arr.length; //wrap around
+
 			first = 1;
 		}
 		
@@ -123,7 +128,7 @@ public class HashTable
 	{
 		int idx= key.hashCode() % arr.length;
 		
-		for(int i = idx, first= 0;i != idx || first == 0;)
+		for(int i = idx, first= 0, collisions = 0;i != idx || first == 0;)
 		{
 			Entry e = ((Entry) arr[i]);
 			
@@ -134,7 +139,8 @@ public class HashTable
 			if(e.getKey().equals(key))
 				return e.getValue();
 			
-			i = (i + 1) % arr.length;
+			collisions++;
+			i = (int) Math.pow((i + collisions), 2) % arr.length; //wrap around
 			first = 1;
 		}
 		return null;
@@ -167,5 +173,5 @@ public class HashTable
 	}
 	
 	
-
+	
 }

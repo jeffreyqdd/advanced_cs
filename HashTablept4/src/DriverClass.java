@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
-import java.io.FileWriter;
 import java.lang.System;
 
 
@@ -114,7 +113,7 @@ public class DriverClass
 		for(int n : sizes)
 		{
 			long start, stop;
-			HashTable ht = new HashTable(n);
+			HashTable_Linear ht = new HashTable_Linear(n);
 			
 			//start the put time
 			start = System.currentTimeMillis();
