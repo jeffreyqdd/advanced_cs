@@ -1,129 +1,116 @@
-public class HashTable_Linear
+import java.util.Random;
+
+public class HashTable_Random
 {
 	private Object[] arr;
 	private int size;
+	private int capacity;
 	
 	public long probes;
 	
-	HashTable_Linear() // Sets default table size to 101
+	HashTable_Random() // Sets default table size to 101
 	{
 		arr = new Object[101];
+		capacity = 101;
+		size = 0;
 		probes = 0;
 	}
-	HashTable_Linear(int initCap)
+	HashTable_Random(int initCap)
 	{
 		arr = new Object[initCap];
+		capacity = initCap;
 		probes = 0;
+		size = 0;
 	}
 	//removes a certain entry
 	public Object remove(Entry e) {return remove(e.getKey());}
 	public Object remove(Object key)
 	{
-		int idx = key.hashCode() % arr.length;
+		int idx = key.hashCode();
+		Random r = new Random(idx);
 		
 		
-		
-		for(int i = idx, first= 0;i != idx || first == 0;)
+		for (int nextProbe = idx % capacity; ; nextProbe = Math.abs(idx + r.nextInt()) % capacity)
 		{
+			Entry e = (Entry) arr[nextProbe];
+			if (e == null) return null;
 			
-			Entry e = (Entry) arr[i];
-			
-			if(e == null) return null;
-			
-			if(e.getKey().equals(key))
+			if (e.getKey().equals(key))
 			{
-				((Entry) arr[i]).markRemoved();
+				((Entry) arr[nextProbe]).markRemoved();
 				size--;
 				return e.getValue();
 			}
-			
-			i = (i + 1) % arr.length; //wrap around
-			first = 1;
 		}
-		return null;
 	}
 	
+	public Object put(Entry e) {return put(e.getKey(), e.getValue());}
 	
-	
-	// Returns the previous value associated with key,
-	// or null if there was no mapping for key
-	public Object put(Entry e){return put(e.getKey(), e.getValue());}
 	public Object put(Object key, Object value) throws IllegalStateException
 	{
 		//check if full
 		if(size == arr.length) throw new IllegalStateException("Out of memory");
-
-		int idx = key.hashCode() % arr.length;
 		
+		int idx = key.hashCode();
+		Random r = new Random(idx);
 		
-		for(int i = idx, first= 0;i != idx || first == 0;)
+		for (int nextProbe = idx % capacity; ; nextProbe = Math.abs(idx + r.nextInt()) % capacity)
 		{
+			//System.out.println(nextProbe);
 			
-			Entry e = (Entry) arr[i];
+			Entry e = (Entry) arr[nextProbe];
 			
 			probes++;
 			
 			if(e == null) //if loc is empty, replace, return null, and increment size
 			{
-				arr[i] = new Entry(key, value);
+				arr[nextProbe] = new Entry(key, value);
 				size++;
 				return null;
 			}
-			//System.out.println("probs: " + key + " " +value);
-			//check duplicate, override
+			
 			if(e.getKey().equals(key))
 			{
-				System.out.println("overwrite");
-				arr[i] = new Entry(key, value);
+				//System.out.println("overwrite");
+				arr[nextProbe] = new Entry(key, value);
 				return e.getValue();
 			}
 			
 			//if removed
 			if(e.isRemoved())
 			{
-				arr[i] = new Entry(key, value);
+				arr[nextProbe] = new Entry(key, value);
 				size++;
 				
 				//System.out.println();
 				
 				//remove repeats if any
-				for(int j = i + 1, first2 = 0 ;j != idx || first2 == 0;)
+				for(;;nextProbe = Math.abs((idx + r.nextInt()) % capacity))
 				{
-					Entry possible = (Entry) arr[j];
+					Entry possible = (Entry) arr[nextProbe];
 					
 					if(possible == null) return null;
 					if(possible.getKey().equals(key))
 					{
-						((Entry) arr[j]).markRemoved();
+						((Entry) arr[nextProbe]).markRemoved();
 						return possible.getValue();
 					}
-					
-					j = (j + 1) % arr.length; //wrap around
-					first2 = 1;
 				}
-				
-				
-				return null;
+
 			}
-			
-			
-			i = (i + 1) % arr.length; //wrap around
-			first = 1;
 		}
 		
-		return null;
 	}
 	
-	// Returns the value to which the specified key is mapped,
-	// or null if this map contains no mapping for the key
 	Object get(Entry e){return get(e.getKey());}
 	Object get(Object key)
 	{
-		int idx= key.hashCode() % arr.length;
+		int idx = key.hashCode();
+		Random r = new Random(idx);
 		
-		for(int i = idx, first= 0;i != idx || first == 0;)
+		for(int nextProbe = idx % capacity; ; nextProbe = Math.abs(idx + r.nextInt()) % capacity)
 		{
-			Entry e = ((Entry) arr[i]);
+			Entry e = ((Entry) arr[nextProbe]);
 			
 			//System.out.println("Probing: " + e);
 			probes++;
@@ -131,13 +118,9 @@ public class HashTable_Linear
 			if(e == null) return null;
 			if(e.getKey().equals(key))
 				return e.getValue();
-			
-			i = (i + 1) % arr.length;
-			first = 1;
+
 		}
-		return null;
 	}
-	
 	public String toString() // Returns a formatted string, ordered by bucket index
 	{
 		String  s = "";
@@ -159,11 +142,12 @@ public class HashTable_Linear
 		return s;
 	}
 	
+	
 	public int size()
 	{
 		return size;
 	}
 	
 	
-
+	
 }

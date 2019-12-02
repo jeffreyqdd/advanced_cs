@@ -1,67 +1,12 @@
 import java.util.Scanner;
-import java.util.ArrayList;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.lang.System;
+import java.util.ArrayList;
 
 
 public class DriverClass
 {
-	//it passes all the validation testing.
-	/*
-	public static void main(String[] args) throws IOException
-	{
-		Scanner sc = new Scanner(new File("test/put50.txt"));
-		
-		HashTable ht = new HashTable();
-		while(sc.hasNextLine())
-		{
-			String[] s = sc.nextLine().split(" ");
-			
-			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
-			ht.put(e);
-			
-		}
-		
-		
-		sc.close();
-		
-		sc = new Scanner(new File("test/remove10.txt"));
 
-		while(sc.hasNextLine())
-		{
-			String[] s = sc.nextLine().split(" ");
-			
-			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
-			ht.remove(e);
-			
-		}
-		
-		sc = new Scanner(new File("test/overwrite3.txt"));
-		while(sc.hasNextLine())
-		{
-			String[] s = sc.nextLine().split(" ");
-			
-			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
-			ht.put(e);
-			
-		}
-		
-		sc = new Scanner(new File("test/put10again.txt"));
-		while(sc.hasNextLine())
-		{
-			String[] s = sc.nextLine().split(" ");
-			
-			Entry e = new Entry(Integer.parseInt(s[2]), s[0] + "- " + s[3] +" " +s[4]);
-			ht.put(e);
-			
-		}
-		
-		System.out.println(ht);
-	}
-	
-	*/
-	
 	
 	public static ArrayList<Entry> entries = new ArrayList<>();
 	public static ArrayList<Entry> successful = new ArrayList<>();
@@ -89,40 +34,64 @@ public class DriverClass
 		sc2.close();
 		sc3.close();
 		
-		/*for(Entry e : entries)
-			System.out.println(e.getKey() + " " + e.hashCode());*/
+		/*HashBucket hb = new HashBucket();
 		
-		//FileWriter wr =  new FileWriter(new File("oof.txt"));
+		hb.put(new Entry(123, "joe"));
+		hb.put(new Entry(22, "bob"));
 		
-		//wr.write(ht.toString());
-
-		//wr.close();
 		
-		//System.out.println(ht);
-		//System.out.println(ht.get(successful.get(0)));
+		hb.put(new Entry(25, "bob"));
+		hb.put(new Entry(25, "bob"));
+		
+		hb.remove(new Entry(25, "bob"));
+		
+		System.out.println(hb);
+		*/
+		
 		
 		runSimulation();
 	}
 	
 	
-	public static void runSimulation()
+	public static void runSimulation() throws IOException
 	{
 		//create a hash table of size htSize
-		int[] sizes = {500000, 100000, 62500, 55555, 50000};
+		double[] loadF = {0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0};
 		
-		for(int n : sizes)
+		
+		double[] graphLoadF = new double[10];
+		double[] graphAvgLen = new double[10];
+		double[] graphMaxLen = new double[10];
+		double[] graphInsertionT = new double[10];
+		
+		double[] graphSuccSearchT = new double[10];
+		double[] graphUnsuccSearchT = new double[10];
+		
+		
+		
+		int index = 0;
+		for(double n : loadF)
 		{
+			
+			int arrSize = (int) (50000.0 / n);
+			
 			long start, stop;
-			HashTable_Linear ht = new HashTable_Linear(n);
+			HashBucket ht = new HashBucket(arrSize);
+			
+			
 			
 			//start the put time
 			start = System.currentTimeMillis();
 			for (Entry e : entries)
 				ht.put(e);
 			stop = System.currentTimeMillis();
-			long insertProbes = ht.probes;
-			ht.probes = 0;
-			long timeToLoad = stop - start;
+			
+			graphLoadF[index] = n;
+			graphAvgLen[index] = ht.avgLen();
+			graphMaxLen[index] = ht.maxLen();
+			graphInsertionT[index] = stop - start;
+			
+			
 			
 			
 			//start the succ search time
@@ -130,40 +99,62 @@ public class DriverClass
 			for (Entry e : successful)
 				ht.get(e.getKey());
 			stop = System.currentTimeMillis();
-			long timeToSuccSearch = stop - start;
-			long successfulProbe = ht.probes;
-			ht.probes = 0;
+			
+			graphSuccSearchT[index] = stop - start;
+			
 			
 			//start the unsucc search time
 			start = System.currentTimeMillis();
 			for (Entry e : unsuccessful)
 				ht.get(e.getKey());
 			stop = System.currentTimeMillis();
-			long timeToUnsuccSearch = stop - start;
-			long unsuccessfulProbe = ht.probes;
-			ht.probes = 0;
 			
-			System.out.println(
-					"INSERTION TIME-------\n" +
-							"Load Factor: " + ((double) ht.size() / (double) n) + "\n" +
-							"Avg Probes: " + insertProbes / entries.size() + "\n" +
-							"Time: " + timeToLoad);
-			
-			System.out.println(
-					"SUCCESSFUL SEARCH TIME-------\n" +
-							"Time: " + timeToSuccSearch + '\n' +
-							"Avg Probes: " + successfulProbe / successful.size());
-			
-			System.out.println(
-					"UNSUCCESSFUL SEARCH TIME-------\n" +
-							"Time: " + timeToUnsuccSearch + '\n' +
-							"Avg Probes: " + unsuccessfulProbe / unsuccessful.size());
-			
-			System.out.println("\n\n\n");
-			
+			graphUnsuccSearchT[index] = stop - start;
+
+			index++;
 		}
+		/*
+		
+		//write
+		FileWriter wrCSV = new FileWriter(new File("RandomCollisionAvoidanceUSINGBUCKETS.csv"));
 		
 		
+		
+		//write insertion
+		wrCSV.write("Insertion\n");
+		wrCSV.write("Load Factor,Insertion Time(ms)\n");
+		for(int i = 0; i < 10; i++)
+			wrCSV.write(graphLoadF[i] + "," +graphInsertionT[i] + "\n");
+		wrCSV.write("\n\n\n");
+		
+		wrCSV.write("Load Factor,Average Bucket Length\n");
+		for(int i = 0; i < 10; i++)
+			wrCSV.write(graphLoadF[i] + "," +graphAvgLen[i] + "\n");
+		wrCSV.write("\n\n\n");
+		
+		wrCSV.write("Load Factor,Max Bucket Length\n");
+		for(int i = 0; i < 10; i++)
+			wrCSV.write(graphLoadF[i] + "," +graphMaxLen[i] + "\n");
+		wrCSV.write("\n\n\n");
+		
+		
+		wrCSV.write("Successful Searches\n");
+		wrCSV.write("Load Factor,Searching Time(ms)\n");
+		for(int i = 0; i < 10; i++)
+			wrCSV.write(graphLoadF[i] + "," +graphSuccSearchT[i] + "\n");
+		wrCSV.write("\n\n\n");
+		
+		wrCSV.write("Unsuccessful Searches\n");
+		wrCSV.write("Load Factor,Searching Time(ms)\n");
+		for(int i = 0; i < 10; i++)
+			wrCSV.write(graphLoadF[i] + "," +graphUnsuccSearchT[i] + "\n");
+		wrCSV.write("\n\n\n");
+		
+		
+		
+		wrCSV.close();*/
 	}
+	
+	
 	
 }
