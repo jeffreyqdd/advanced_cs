@@ -1,83 +1,94 @@
+import java.text.DecimalFormat;
 import java.util.*;
 import java.io.*;
 
 public class Plant
 {
+	public static int N;
 	
-	public static final int MAX_TREES = 1000000;
-	public static void main(String[] args) throws IOException
+	public static void solve(ArrayList<String> trees)
 	{
-		Scanner sc = new Scanner(new File("src/plant.dat"));
-		
-		int numTestCases = Integer.parseInt(sc.nextLine());
-		
-		HashMap<String, Integer> mapFreq = new HashMap<>(MAX_TREES * 2);
-		
-		
-		int count = 0;
-		int currentCase = 1;
-		
-		while(sc.hasNextLine())
+		//HashMap treeCnt:
+		//key: tree name
+		//value: quantity
+		HashMap<String, Integer> treeCnt = new HashMap<>();
+		int totalTrees = 0;
+		//cnt
+		for(String tree : trees)
 		{
-			String line = sc.nextLine();
+			//System.out.println("entering: " + tree);
+			//increment trees
+			totalTrees++;
 			
-			if(line.length() == 0)
+			//add to treeCnt
+			
+			if(treeCnt.containsKey(tree))
 			{
-				//System.out.println(mapFreq);
-				//System.out.println(count);
-				ArrayList<Pair> calculated = new ArrayList<>();
-				
-				for(String key : mapFreq.keySet())
-				{
-					int value = mapFreq.get(key);
-					
-					calculated.add(new Pair(key, ((double) value / (double) count) * 100) );
-				}
-				
-				Collections.sort(calculated);
-				
-				for (Pair p : calculated)
-				{
-					System.out.println(p.first + " " + Math.round(p.second * 10000.0) / 10000.0);
-				}
-				
-				count = 0;
-				if(currentCase == numTestCases)
-					break;
-				currentCase++;
-				mapFreq.clear();
-			}
-			
-			
-			if(mapFreq.containsKey(line))
-			{
-				mapFreq.put(line, mapFreq.get(line) + 1);
+				//item exists;
+				treeCnt.put(tree, treeCnt.get(tree) + 1);
 			}
 			else
 			{
-				mapFreq.put(line, 1);
+				//item does not exist;
+				treeCnt.put(tree, 1);
 			}
-			count++;
 		}
 		
-		//System.out.println(mapFreq);
-		//System.out.println(count);
-		ArrayList<Pair> calculated = new ArrayList<>();
+		ArrayList<Pair> treePercent = new ArrayList<>();
 		
-		for(String key : mapFreq.keySet())
+		for(String key : treeCnt.keySet())
 		{
-			int value = mapFreq.get(key);
+			int value = treeCnt.get(key);
+			treePercent.add(new Pair(key, (double) value / (double) totalTrees * 100.0) );
+		}
+		
+		Collections.sort(treePercent);
+		
+		for (Pair p : treePercent)
+		{
+			DecimalFormat decFor = new DecimalFormat("0.0000");
+			p.second = Math.round(p.second * 10000.0) /10000.0;
 			
-			calculated.add(new Pair(key, ((double) value / (double) count) * 100) );
+			String name = p.first;
+			String percent = decFor.format(p.second);
+			
+			System.out.println(name + " " + percent);
 		}
 		
-		Collections.sort(calculated);
-		
-		for (Pair p : calculated)
-		{
-			System.out.println(p.first + " " + Math.round(p.second * 10000.0) / 10000.0);
-		}
-		mapFreq.clear();
 	}
 	
+	public static void main(String[] args) throws IOException
+	{
+		Scanner sc = new Scanner(new File("plant.dat"));
+		
+		N = Integer.parseInt(sc.nextLine());
+		
+		//read out the newline
+		sc.nextLine();
+		
+		ArrayList<String> trees = new ArrayList<>();
+		
+		int cnt = 0;
+		while(cnt < N)
+		{
+			String next = sc.nextLine();
+			
+			if(next.length() != 0)
+				trees.add(next);
+
+			//if at end of test case
+			if(next.length() == 0 || !sc.hasNextLine())
+			{
+				solve(trees);
+				System.out.println();
+				
+				//reset
+				trees.clear();
+				
+				
+				//counter
+				cnt++;
+			}
+		}
+	}
 }

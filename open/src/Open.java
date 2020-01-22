@@ -3,70 +3,118 @@ import java.io.*;
 
 public class Open
 {
-	public static final int MAX_N = 10000;
-	public static int solve(ArrayList<String> arr)
+	
+	public static HashMap<String, HashSet<String>> clean(HashMap<String, HashSet<String>> map)
 	{
-		HashMap<String, String> signedUp = new HashMap<>(MAX_N * 2);
-		HashSet<String> seen = new HashSet<>(MAX_N * 2), seenAgain = new HashSet<>(MAX_N * 2);
-		HashMap<String, Integer> counts = new HashMap(200);
+		//avoid the concurrent modification exception
 		
-		String CurrentProject = "";
-		
-		HashSet<String> recentProjectRoll = new HashSet<>(200);
-		
-		for(String s : arr)
-		{
-			if(s.charAt(0) > 96)
-			{
-				//lowercase
-				
+		HashMap<String, HashSet<String>> ret = new HashMap<>();
 
-				if(seen.contains(s) && !recentProjectRoll.contains(s))
-					seenAgain.add(s);
-				seen.add(s);
-				recentProjectRoll.add(s);
-				signedUp.put(s, CurrentProject);
+		for(String s : map.keySet())
+		{
+			if(map.get(s).size() <= 1)
+			{
+				ret.put(s, map.get(s));
+			}
+		}
+		
+		return ret;
+	}
+	
+	public static void solve(ArrayList<String> arr)
+	{
+		//create HashMap
+		//Key: person
+		//Value: HashSet of projects
+		HashMap<String, HashSet<String>> enrollment = new HashMap<>();
+		ArrayList<String> allProjects = new ArrayList<>();
+		
+		String currPerson = "";
+		String currProject = "";
+		
+		for(String item : arr)
+		{
+			//check caps via ascii
+			if(item.charAt(0) < 96)
+			{
+				currProject = item;
+				allProjects.add(currProject);
 			}
 			else
 			{
-				CurrentProject = s;
-				counts.put(CurrentProject, 0);
+				//person
+				currPerson = item;
 				
-				recentProjectRoll.clear();
+				//System.out.println("adding " + currPerson + " to " + currProject);
 				
+				if(enrollment.containsKey(currPerson))
+				{
+					//student is already in the system
+					//System.out.println("	success");
+					enrollment.get(currPerson).add(currProject);
+				}
+				else
+				{
+					//System.out.println("	new profile");
+					//new student, create empty hashset
+					enrollment.put(currPerson, new HashSet<>());
+					enrollment.get(currPerson).add(currProject);
+				}
 			}
 		}
 		
-		for(String s : seenAgain)
+		//clean out students who have enrolled in more than one project
+		enrollment = clean(enrollment);
+		
+		//for(String key : enrollment.keySet())
+			//System.out.println(key + " " + enrollment.get(key) );
+		
+		//hashmap
+		//key: project
+		//value: num of signups
+		//students are now unique
+		HashMap<String, Integer> signups = new HashMap<>();
+		
+		//add all projects
+		for(String project : allProjects)
 		{
-			seen.remove(s);
+			signups.put(project, 0);
 		}
 		
-	
-		
-		for(String s : seen)
+		for(String student : enrollment.keySet())
 		{
-			String key = s, value = signedUp.get(s);
+			//we know there is only one project in each;
+			String project = enrollment.get(student).toString();
+			//trim project
+			project = project.substring(1, project.length() - 1);
 			
-			if(counts.containsKey(value))
-			{
-				System.out.println(key + " " + value);
-				counts.put(value, counts.get(value) + 1);
-			}
-
+			if(signups.containsKey(project))
+				signups.put(project, signups.get(project) + 1);
+			else
+				signups.put(project, 1);
 		}
 		
-		for(String key : counts.keySet())
+		//put into pair
+		
+		ArrayList<Pair> ret = new ArrayList<>();
+		for(String key : signups.keySet())
 		{
-			System.out.println(key + counts.get(key));
+			int value = signups.get(key);
+			
+			ret.add(new Pair(key, value));
 		}
 		
-		return 0;
+		Collections.sort(ret);
+		
+		for (Pair p : ret)
+		{
+				System.out.println(p.first + " " + p.second);
+		}
 	}
 	
 	public static void main(String[] args) throws IOException
 	{
-		Scanner sc = new Scanner(new File("src/open.dat"));
+		Scanner sc = new Scanner(new File("open.dat"));
 		
 		ArrayList<String> arr = new ArrayList<>();
 		
@@ -76,8 +124,11 @@ public class Open
 			
 			if(line.equals("1"))
 			{
+				//System.out.println("entering: "+ arr);
 				solve(arr);
+				System.out.println();
 				arr.clear();
+				continue;
 			}
 			if(line.equals("0"))
 			{

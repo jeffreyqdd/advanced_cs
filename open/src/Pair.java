@@ -1,4 +1,4 @@
-public class Pair implements Comparable
+public class Pair implements Comparable<Pair>
 {
 	String first; int second;
 	
@@ -9,8 +9,10 @@ public class Pair implements Comparable
 	}
 	
 	@Override
-	public int compareTo(Object o)
+	public int compareTo(Pair p)
 	{
-		return 0;
+		if(second == p.second)
+			return first.compareTo(p.first);
+		return p.second - second;
 	}
 }
