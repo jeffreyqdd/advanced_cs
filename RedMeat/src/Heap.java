@@ -1,8 +1,9 @@
-public class Heap
+
+
+public class Heap<T>
 {
-	private Node[]  arr;
+	private int[]  arr;
 	private int size;
-	
 	
 	public Heap()
 	{
@@ -11,13 +12,13 @@ public class Heap
 	
 	public Heap(int initialSize)
 	{
-		arr = new Node[initialSize];
+		arr = new int[initialSize];
 		this.size = 0;
 		
-		arr[0] = new Node();
+		arr[0] = Integer.MIN_VALUE;
 	}
 	
-	public void add(Node input)
+	public void add(int input)
 	{
 		if(size == arr.length - 1)
 			resize();
@@ -26,16 +27,16 @@ public class Heap
 		arr[size] = input;
 		
 		int i = size;
-		while(i != 0 && arr[getParent(i)].milk() > arr[i].milk())
+		while(i != 0 && arr[getParent(i)] > arr[i])
 		{
 			swap(i, getParent(i));
 			i = getParent(i);
 		}
 	}
 	
-	public Node removeMin()
+	public int removeMin()
 	{
-		Node ret = arr[1];
+		int ret = arr[1];
 		arr[1] = arr[size];
 		size--;
 		
@@ -85,9 +86,9 @@ public class Heap
 		int leftChild = getLeftChild(node);
 		int rightChild = getRightChild(node);
 		
-		if(leftChild <= size && arr[leftChild].milk() < arr[node].milk())
+		if(leftChild <= size && arr[leftChild] < arr[node])
 		{
-			if(rightChild <= size && arr[rightChild].milk() < arr[leftChild].milk())
+			if(rightChild <= size && arr[rightChild] < arr[leftChild])
 			{
 				swap(node, rightChild);
 				minHeapify(rightChild);
@@ -98,7 +99,7 @@ public class Heap
 				minHeapify(leftChild);
 			}
 		}
-		else if(rightChild <= size && arr[rightChild].milk() < arr[node].milk())
+		else if(rightChild <= size && arr[rightChild] < arr[node])
 		{
 			swap(node, rightChild);
 			minHeapify(rightChild);
@@ -109,7 +110,7 @@ public class Heap
 	
 	private void resize()
 	{
-		Node[] newArr = new Node[arr.length * 2];
+		int[] newArr = new int[arr.length * 2];
 		
 		for(int i = 0; i < arr.length; i++)
 			newArr[i] = arr[i];
@@ -121,7 +122,7 @@ public class Heap
 	
 	private void swap(int i, int j)
 	{
-		Node intermediate = arr[j];
+		int intermediate = arr[j];
 		arr[j] = arr[i];
 		arr[i] = intermediate;
 	}
@@ -141,6 +142,19 @@ public class Heap
 	}
 	
 	
-	
+	private class Node<T>
+	{
+		T holder;
+		int priority;
+
+		Node(T t, int priority)
+		{
+			this.holder = t;
+			this.priority = priority;
+		}
+
+
+	}
+
 	
 }
