@@ -17,7 +17,7 @@ public class Goat
 		
 		for(Node n : goats)
 			currGoat.add(n);
-		
+		System.out.println("made edits");
 		int day = 0;
 		//System.out.println("collisions: " + collisions);
 		while(currGoat.size() > collisions)
