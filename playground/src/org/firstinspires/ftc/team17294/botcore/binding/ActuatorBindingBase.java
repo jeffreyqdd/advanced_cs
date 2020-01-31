@@ -1,8 +1,8 @@
-package botcore.binding;
+package org.firstinspires.ftc.team17294.botcore.binding;
 
-import botcore.configuration.BotConfiguration;
-import botcore.framework.BotTaskManager;
-import botcore.utilities.LogUtils;
+import org.firstinspires.ftc.team17294.botcore.important.BotConfiguration;
+import org.firstinspires.ftc.team17294.botcore.framework.BotTaskManager;
+import org.firstinspires.ftc.team17294.botcore.utilities.LogUtils;
 
 import java.util.logging.Logger;
 

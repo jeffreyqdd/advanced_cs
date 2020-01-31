@@ -1,7 +1,8 @@
-package botcore.framework;
+package org.firstinspires.ftc.team17294.botcore.framework;
 
-import botcore.configuration.BotConfiguration;
-import botcore.utilities.LogUtils;
+import org.firstinspires.ftc.team17294.botcore.important.ControllerIO;
+import org.firstinspires.ftc.team17294.botcore.important.BotConfiguration;
+import org.firstinspires.ftc.team17294.botcore.utilities.LogUtils;
 
 import java.util.HashSet;
 import java.util.logging.Logger;
@@ -15,20 +16,26 @@ public class BotTaskManager
 	}
 	// this logger needs to be created per class
 	Logger logger = LogUtils.getLogger(BotTaskManager.class.getName());
-
+	
+	//controller data
+	public ControllerIO controllerIO;
+	
 	//create bot configuration as well as the tasks
 	protected final BotConfiguration config;
 	protected final HashSet<Subsystem> tasks;
 	protected final WallClock clock;
 	
-	
-	public BotTaskManager() {
+	public BotTaskManager(boolean createGamepad) {
 		super();
 		
 		this.config = new BotConfiguration();
 		this.clock = new WallClock();
 		
 		tasks = new HashSet<>();
+		
+		
+		if(createGamepad)
+			getTasks().add(new ControllerIO("controller IO", this, 30));
 	}
 	
 	public HashSet<Subsystem> getTasks() {

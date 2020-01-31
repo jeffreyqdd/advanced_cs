@@ -1,9 +1,8 @@
-package botcore.framework;
+package org.firstinspires.ftc.team17294.botcore.framework;
 
-import botcore.binding.ActuatorBindingBase;
-import botcore.binding.SensorBindingBase;
-import botcore.configuration.BotConfiguration;
-import botcore.utilities.LogUtils;
+import org.firstinspires.ftc.team17294.botcore.binding.ActuatorBindingBase;
+import org.firstinspires.ftc.team17294.botcore.binding.SensorBindingBase;
+import org.firstinspires.ftc.team17294.botcore.utilities.LogUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -17,7 +16,6 @@ public abstract class Subsystem
 	private final String name;
 	private long prevTickTime;
 	protected final BotTaskManager botManager;
-	protected BotConfiguration config;
 	
 	private final Set<TickType> ttoi;
 	final Queue<TickEvent> mailbox = new LinkedList<>();
@@ -35,7 +33,6 @@ public abstract class Subsystem
 		this.rate = rate;
 		this.botManager = botmgr;
 		this.name = name;
-		this.config = botmgr.getConfig();
 		
 		// instead of using system current. this allows using special wall clock
 		prevTickTime = -1;

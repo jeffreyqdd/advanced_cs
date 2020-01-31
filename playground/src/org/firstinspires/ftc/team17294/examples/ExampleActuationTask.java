@@ -1,7 +1,7 @@
-package examples;
+package org.firstinspires.ftc.team17294.examples;
 
-import botcore.binding.ActuatorBindingBase;
-import botcore.framework.BotTaskManager;
+import org.firstinspires.ftc.team17294.botcore.binding.ActuatorBindingBase;
+import org.firstinspires.ftc.team17294.botcore.framework.BotTaskManager;
 
 public class ExampleActuationTask extends ActuatorBindingBase
 {

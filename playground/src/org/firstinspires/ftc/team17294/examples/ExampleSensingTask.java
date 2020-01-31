@@ -1,8 +1,8 @@
-package examples;
+package org.firstinspires.ftc.team17294.examples;
 
-import botcore.binding.MeasurementPackage;
-import botcore.binding.SensorBindingBase;
-import botcore.framework.BotTaskManager;
+import org.firstinspires.ftc.team17294.botcore.binding.packages.MeasurementPackage;
+import org.firstinspires.ftc.team17294.botcore.binding.SensorBindingBase;
+import org.firstinspires.ftc.team17294.botcore.framework.BotTaskManager;
 
 public class ExampleSensingTask extends SensorBindingBase
 {

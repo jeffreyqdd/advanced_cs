@@ -1,4 +1,4 @@
-package botcore.binding;
+package org.firstinspires.ftc.team17294.botcore.binding.packages;
 
 public class MeasurementPackage
 {
