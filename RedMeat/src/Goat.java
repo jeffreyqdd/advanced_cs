@@ -3,41 +3,117 @@ import java.io.*;
 
 public class Goat {
 
-    public static int numTestCases;
+    private static int numTestCases;
 
-    public static void solve(HashSet<Cow> hashCow, int longest) {
+    private static void solve(HashSet<Cow> hashCow, int lcm) {
 
-        Heap heap = new Heap();
+        //System.out.println("entering: " + lcm);
 
-        for (Cow c : hashCow) {
-            heap.add(c.getNextMilk());
-        }
+        int lcmReset = 0;
+        int cowEaten = 0;
+        int day = 1;
 
-        int a = heap.removeMin();
-        int b;
-
-        if(!heap.isEmpty())
+        while(lcmReset < lcm)
         {
-            //another goat
-            b = heap.removeMin();
+            Heap<Cow> heap = new Heap<>();
 
-            if(a == b)
+            for(Cow c : hashCow)
             {
-                //nothing happpens
+                //System.out.println("inserting: " + c);
+                heap.add(c, c.getNextMilk());
+            }
+
+            if(heap.size() == 0)
+            {
+                break;
+            }
+            else if(heap.size() == 1)
+            {
+                Cow a = heap.removeMin();
+
+                hashCow.remove(a);
+
+                lcmReset = 0;
+
+                cowEaten = day;
             }
             else
             {
-                //eat it;
+                Cow a = heap.removeMin();
+                Cow b = heap.removeMin();
 
+                //System.out.println("removing: " + a);
+
+                if(a.getNextMilk() != b.getNextMilk())
+                {
+                    hashCow.remove(a);
+                    lcmReset = 0;
+
+                    cowEaten = day;
+                }
             }
+
+            //System.out.println(lcmReset);
+
+            for(Cow c : hashCow)
+            {
+                c.nextDay();
+            }
+
+            lcmReset++;
+            day++;
+
         }
-        else
-        {
-            //last goat
-        }
+
+        System.out.println(hashCow.size() + " " + cowEaten);
 
 
     }
+
+    public static int getLcm(ArrayList<Integer> arrList)
+    {
+        int[] element_array = new int[arrList.size()];
+
+        for(int i = 0; i < arrList.size(); i++)
+        {
+            element_array[i] = arrList.get(i);
+        }
+
+
+
+        int lcm_of_array_elements = 1;
+        int divisor = 2;
+
+        while (true) {
+            int counter = 0;
+            boolean divisible = false;
+            for (int i = 0; i < element_array.length; i++) {
+
+                if (element_array[i] == 0) {
+                    return 0;
+                } else if (element_array[i] < 0) {
+                    element_array[i] = element_array[i] * (-1);
+                }
+                if (element_array[i] == 1) {
+                    counter++;
+                }
+                if (element_array[i] % divisor == 0) {
+                    divisible = true;
+                    element_array[i] = element_array[i] / divisor;
+                }
+            }
+
+            if (divisible) {
+                lcm_of_array_elements = lcm_of_array_elements * divisor;
+            } else {
+                divisor++;
+            }
+            if (counter == element_array.length) {
+                return lcm_of_array_elements;
+            }
+        }
+    }
+
 
 
     public static void main(String[] args) throws IOException
@@ -49,14 +125,15 @@ public class Goat {
         for(int testCase = 0; testCase < numTestCases; testCase++)
         {
             HashSet<Cow> cowArr = new HashSet<>();
-            HashMap<ArrayList<Integer>, Integer> intersect = new HashMap<>();
+            ArrayList<Integer> numCycles = new ArrayList<>();
 
             int numCows = sc.nextInt();
-            int collisions = 0;
 
             for(int cow = 0; cow < numCows; cow++)
             {
                 int cycleCnt = sc.nextInt();
+
+                numCycles.add(cycleCnt);
 
                 Cow c = new Cow(cow);
                 for(int cycle = 0; cycle < cycleCnt; cycle++) {
@@ -65,41 +142,18 @@ public class Goat {
 
                 cowArr.add(c);
 
-                /*if(intersect.containsKey(c.getArray()))
-                {
-                    intersect.put(c.getArray(), intersect.get(c.getArray()) + 1);
-                }
-                else
-                {
-                    intersect.put(c.getArray(), 1);
-                }*/
-
-                collisions = Math.max(collisions, c.getArray().size());
             }
 
-            /*for(ArrayList<Integer> intArr : intersect.keySet())
-            {
-                if(intersect.get(intArr) > 1)
-                {
-                    collisions += intersect.get(intArr);
-                }
-            }*/
-
-            solve(cowArr, collisions);
+            int lcm = getLcm(numCycles);
+            solve(cowArr, lcm);
         }
-
-
-
-
-
-
     }
 
     static class Cow
     {
-        public ArrayList<Integer> production;
-        public int currCycle;
-        public int id;
+        private ArrayList<Integer> production;
+        private int currCycle;
+        private int id;
         Cow(int hash)
         {
             id = hash;
@@ -132,7 +186,7 @@ public class Goat {
         @Override
         public String toString()
         {
-            return production.toString();
+            return id + ": " + production.toString();
         }
         @Override
         public boolean equals(Object obj)
