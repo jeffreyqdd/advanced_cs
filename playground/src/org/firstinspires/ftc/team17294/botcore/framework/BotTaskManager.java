@@ -90,7 +90,6 @@ public class BotTaskManager
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		
 	}

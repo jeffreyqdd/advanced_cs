@@ -5,14 +5,23 @@ import org.firstinspires.ftc.team17294.botcore.framework.BotTaskManager;
 
 public class ExampleActuationTask extends ActuatorBindingBase
 {
-	public ExampleActuationTask(BotTaskManager botmg)
+	private int Motor1;
+	
+	
+	public ExampleActuationTask(BotTaskManager botmgr)
 	{
-		super(botmg);
+		super(botmgr);
+	}
+	
+	@Override
+	public void createActuators()
+	{
+		Motor1 = 1;
 	}
 	
 	@Override
 	public void actuate(Object obj)
 	{
-		System.out.println("actuating");
+		Motor1 = 2;
 	}
 }

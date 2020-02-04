@@ -1,7 +1,7 @@
 package org.firstinspires.ftc.team17294;
 
 import org.firstinspires.ftc.team17294.botcore.framework.BotTaskManager;
-import org.firstinspires.ftc.team17294.examples.ExampleSubsystem;
+import org.firstinspires.ftc.team17294.examples.ExampleCombinedSubsystm;
 
 public class Main
 {
@@ -18,8 +18,8 @@ public class Main
 		
 		BotTaskManager bot = new BotTaskManager(true);
 		//bot.getTasks().add(new ControllerIO("controller IO", bot, 4));
-		bot.getTasks().add(new ExampleSubsystem("hello world", bot, 3));
-
+		for(int i = 0; i < 1; i++)
+			bot.getTasks().add(new ExampleCombinedSubsystm("examplee hello world", bot, 60));
 		
 		
 		bot.run();

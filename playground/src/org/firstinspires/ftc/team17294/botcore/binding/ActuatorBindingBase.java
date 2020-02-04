@@ -19,8 +19,11 @@ public abstract class ActuatorBindingBase implements Actuator
 
 		this.botmgr = botmgr;
 		this.config = botmgr.getConfig();
+		
+		createActuators();
 	}
 	
+	public abstract void createActuators();
 	
 	@Override
 	public abstract void actuate(Object obj);

@@ -8,7 +8,7 @@ public class LogUtils {
 	
 	public static void init() {
 		
-		setLevel(Level.SEVERE); // or Level.FINE
+		setLevel(Level.SEVERE); // Level.SEVERE or Level.FINE
 		
 		//suppress
 		setPackageLevel("org.glassfish", Level.WARNING);
