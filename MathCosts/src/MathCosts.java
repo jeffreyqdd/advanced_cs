@@ -1,4 +1,3 @@
-import java.awt.print.PrinterAbortException;
 import java.util.*;
 import java.io.*;
 
@@ -12,28 +11,18 @@ public class MathCosts {
         {
             pq.add(n);
         }
-        System.out.println("here");
-        int a = - 1, b = -1;
 
 
-        if(pq.isEmpty()) return;
+        int ret = 0;
+        while(pq.size() >= 2)
+        {
+            int a = pq.poll(), b = pq.poll();
 
-        do {
+            pq.add(a + b);
+            ret += a + b;
+        }
 
-            if(a == -1) {
-                a = pq.poll();
-                continue;
-            }
-            if(b == -1){
-                b = pq.poll();
-                continue;
-            }
-
-            a = a + b;
-        }while(!pq.isEmpty());
-
-        System.out.println(a);
-
+        System.out.println(ret);
 
     }
 
