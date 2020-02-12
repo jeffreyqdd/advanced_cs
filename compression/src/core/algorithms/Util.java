@@ -11,12 +11,16 @@ public class Util
 		Scanner fileSc = new Scanner(new File(fileName));
 		
 		StringBuilder conc = new StringBuilder();
-		
+
+		System.out.println(fileName);
+
 		while(fileSc.hasNextLine())
 		{
-			conc.append(fileSc.nextLine());
+			String s = fileSc.nextLine();
+
+			System.out.println(s);
+			conc.append(s);
 			conc.append('\n');
-			
 		}
 		return conc.toString();
 	}

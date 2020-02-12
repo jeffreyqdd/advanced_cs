@@ -21,11 +21,11 @@ public class main {
         
         
         huff.loadFile(SOURCE_DIR + fileName);
-        huff.generateFrequencyTable();
-        huff.generateRoot();
-        huff.encode();
-        huff.writeBitCodeToFile(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + ".lmao");
-        huff.writeFreqTableToFile(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + "-bin.txt");
+        //huff.generateFrequencyTable();
+        //huff.generateRoot();
+        //huff.encode();
+        //huff.writeBitCodeToFile(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + ".lmao");
+        //huff.writeFreqTableToFile(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + "-bin.txt");
 
 
         System.out.println("finished compressing");

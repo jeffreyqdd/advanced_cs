@@ -6,7 +6,7 @@ public class console
 
     public static final String APP_START =
                     "---------------------------------" + "\n" +
-                    "*  Welcome to Lord Chungus' Huffman Compression Application" + "\n" +
+                    "*  Welcome to Bob's Huffman Compression Application" + "\n" +
                     "* " + "\n" +
                     "*  No Guarantees that it will work correctly" + "\n" +
                     "* " + "\n" +
