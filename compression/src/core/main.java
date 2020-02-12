@@ -26,18 +26,23 @@ public class main {
         huff.encode();
         huff.writeBitCodeToFile(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + ".lmao");
         huff.writeFreqTableToFile(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + "-bin.txt");
-        
-        
-        
-        huff.readFreqTableToMemory(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + "-bin.txt");
-        huff.recover();
-        huff.decode(INTERMEDIATE_DIR + (fileName.split(".txt")[0]) + ".lmao");
-        huff.writeFinalToFile(FINAL_DIR + fileName);
+
+
+        System.out.println("finished compressing");
+
     }
     
     public static void open(String fileName) throws Exception
     {
-        ///.runHuffmanUnpacking(fileName);
+        HuffmanCore huff = new HuffmanCore();
+
+        huff.readFreqTableToMemory(INTERMEDIATE_DIR + (fileName.split(".lmao")[0]) + "-bin.txt");
+
+        huff.recover();
+        huff.decode(INTERMEDIATE_DIR + fileName);
+        huff.writeFinalToFile(FINAL_DIR + (fileName.split(".lmao")[0]) + ".txt");
+
+        System.out.println("finished decoding");
     }
     
     

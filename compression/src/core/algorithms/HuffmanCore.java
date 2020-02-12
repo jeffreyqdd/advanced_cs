@@ -2,6 +2,7 @@ package core.algorithms;
 
 import core.stream.BitInputStream;
 import core.stream.BitOutputStream;
+import jdk.swing.interop.SwingInterOpUtils;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -28,6 +29,7 @@ public class HuffmanCore
 		huffmanCodeString = new HashMap<>();
 		huffmanCodeBit = new HashMap<>();
 		huffmanCodeChar = new HashMap<>();
+		freq = new HashMap<>();
 	}
 	
 	//-----------------------------------------------------------------------------ENCODE----
@@ -165,22 +167,26 @@ public class HuffmanCore
 	public void readFreqTableToMemory(String fileName) throws Exception
 	{
 		Scanner sc = new Scanner(new File(fileName));
-		
+
 		while(sc.hasNextLine())
 		{
 			String line = sc.nextLine();
 			int count = Integer.parseInt(sc.nextLine());
-			
+
+
+			//System.out.println(line + " " + count);
 			if(line.equals(""))
 			{
 				//newline
+				//System.out.println("newline");
 				freq.put('\n', count);
 			}
 			else
 			{
+				//System.out.println("3ssss");
 				freq.put(line.charAt(0), count);
 			}
-			
+
 		}
 	}
 	
