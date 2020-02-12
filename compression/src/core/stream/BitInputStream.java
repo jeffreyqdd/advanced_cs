@@ -52,7 +52,7 @@ public class BitInputStream extends InputStream
      * @param file is the File that is the source of the input
      * @throws RuntimeExceptoin if file cannot be opened.
      */
-    public BitInputStream(File file) throws RuntimeException
+    public BitInputStream(File file)
     {
         myFile = file;
         try {
