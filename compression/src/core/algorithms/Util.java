@@ -12,13 +12,11 @@ public class Util
 		
 		StringBuilder conc = new StringBuilder();
 
-		System.out.println(fileName);
+		//System.out.println(fileName);
 
 		while(fileSc.hasNextLine())
 		{
 			String s = fileSc.nextLine();
-
-			System.out.println(s);
 			conc.append(s);
 			conc.append('\n');
 		}
