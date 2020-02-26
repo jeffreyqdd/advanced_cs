@@ -6,36 +6,6 @@ public class Bottles {
     public static int CASES;
 
 
-    /* this is just the vanilla naive solution that will probably time out very fast*/
-    public static int naiveRecursion(ArrayList<Integer> bottles, int position)
-    {
-        //if there's only one bottle
-        if(bottles.size() == 1)
-        {
-            return bottles.get(0);
-        }
-
-        //base case 1
-        if(position == 0)
-        {
-            return bottles.get(0);
-        }
-
-        //base case 2
-        if(position == 1)
-        {
-            return Math.max(bottles.get(0), bottles.get(1));
-        }
-
-        //divide and conquer
-        else
-        {
-            return Math.max(naiveRecursion(bottles, position - 1),
-                            naiveRecursion(bottles, position - 2) + bottles.get(position));
-        }
-
-
-    }
 
     /* this is the memoized recursive solution*/
     public static int[] dp;
@@ -52,36 +22,33 @@ public class Bottles {
         return memoizedRecursion(shelf, shelf.size() - 1);
     }
 
-    public static int memoizedRecursion(ArrayList<Integer> shelf, int position)
+    public static int memoizedRecursion(ArrayList<Integer> bottles, int position)
     {
+        //return stored data
         if(dp[position] != -1)
         {
             return dp[position];
         }
 
-        if(bottles.size() == 1)
-        {
-            return bottles.get(0);
-        }
-
         //base case 1
         if(position == 0)
         {
-            return bottles.get(0);
+            dp[position] = bottles.get(0);
         }
-
         //base case 2
-        if(position == 1)
+        else if(position == 1)
         {
-            return Math.max(bottles.get(0), bottles.get(1));
+            dp[position] = Math.max(bottles.get(0), bottles.get(1));
         }
-
         //divide and conquer
         else
         {
-            return Math.max(naiveRecursion(bottles, position - 1),
-                    naiveRecursion(bottles, position - 2) + bottles.get(position));
+
+            dp[position] = Math.max(memoizedRecursion(bottles, position - 1),
+                    memoizedRecursion(bottles, position - 2) + bottles.get(position));
         }
+
+        return dp[position];
     }
 
 
@@ -103,9 +70,8 @@ public class Bottles {
                 shelf.add(sc.nextInt());
             }
 
-            System.out.println(shelf + ": ");
-            System.out.println(       naiveRecursion(shelf, shelf.size() - 1)            );
-        }
+            //System.out.println(shelf + ": ");
+            System.out.println(       memoizationSetup(shelf)            );        }
 
     }
 }
