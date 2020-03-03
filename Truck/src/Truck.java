@@ -15,11 +15,7 @@ public class Truck {
 
 
     public static int topDownMem(int i, int w) {
-
-
-
-
-        if(i <= 0 || w < 0)
+        if(i <= 0 || w <= 0)
         {
             return 0;
         }
@@ -48,17 +44,13 @@ public class Truck {
         {
             for(int w = 1; w <= totalWeight; w++)
             {
-
-                if(w - value[i] >= 0)
+                if(w - weight[i] < 0)
                 {
-                    dp[i][w] = Math.max(
-                            dp[i-1][w],
-                            dp[i][w - weight[i]] +  value[i]
-                    );
+                    dp[i][w] = dp[i-1][w];
                 }
                 else
                 {
-                    dp[i][w] = dp[i-1][w];
+                    dp[i][w] = Math.max(dp[i-1][w], dp[i][w-weight[i]] + value[i]);
                 }
             }
         }
@@ -91,7 +83,7 @@ public class Truck {
                     if(a == 0 || b == 0)
                         dp[a][b] = 0;
                     else
-                        dp[a][b] = 0;
+                        dp[a][b] = -1;
                 }
             }
 
@@ -106,16 +98,9 @@ public class Truck {
 
 
             //--------------------------------------------------
-            //System.out.println( topDownMem(NUM_PAIRS, MAX_WEIGHT) );
-            System.out.println( bottomUpDp(NUM_PAIRS, MAX_WEIGHT));
+            System.out.println( topDownMem(NUM_PAIRS, MAX_WEIGHT) );
+            //System.out.println( bottomUpDp(NUM_PAIRS, MAX_WEIGHT));
 
-
-            for(int a = 0; a < dp.length; a++) {
-                for (int b = 0; b < dp[0].length; b++) {
-                    System.out.print(dp[a][b] + " ");
-                }
-                System.out.println();
-            }
 
         }
     }
