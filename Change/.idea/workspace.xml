@@ -27,8 +27,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Change.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="96" column="85" selection-start-line="96" selection-start-column="85" selection-end-line="96" selection-end-column="85" />
+            <state relative-caret-position="517">
+              <caret line="98" selection-start-line="98" selection-end-line="98" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -122,7 +122,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Image Layers" />
       <window_info id="Designer" />
@@ -137,7 +136,7 @@
       <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32936078" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.32936078" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -162,8 +161,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Change.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="96" column="85" selection-start-line="96" selection-start-column="85" selection-end-line="96" selection-end-column="85" />
+        <state relative-caret-position="517">
+          <caret line="98" selection-start-line="98" selection-end-line="98" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
