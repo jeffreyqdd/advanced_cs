@@ -11,7 +11,7 @@ public class console
                     "*  No Guarantees that it will work correctly" + "\n" +
                     "* " + "\n" +
                     "*  METHODS:" + "\n" +
-                    "*  compress [file]\n*  decompress [file]" + "\n" +
+                    "*  compress [enter] (file.txt)\n*  decompress [enter] (file.lmao)" + "\n" +
                     "*  stop" + "\n" +
                     "*" + "\n" +
                     "*  Have fun!" + "\n" +
