@@ -3,40 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="378c0812-7f93-4e32-bb07-de65bb36f4f6" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/algorithms/HuffmanCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/algorithms/HuffmanCore.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/core/animation/console.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/core/animation/console.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/A Tale of Two Cities.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/Amendments to the Constitution.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/Anna Karenina.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/Communist Manifesto.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/Little Women.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/Moby Dick.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/The Three Musketeers.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/Tom Sawyer.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/War and Peace.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/final/dream.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/A Tale of Two Cities-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/A Tale of Two Cities.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Amendments to the Constitution-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Amendments to the Constitution.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Anna Karenina-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Anna Karenina.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Communist Manifesto-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Communist Manifesto.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Little Women-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Little Women.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Moby Dick-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Moby Dick.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Much Ado About Nothing-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Much Ado About Nothing.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/The Three Musketeers-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/The Three Musketeers.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Tom Sawyer-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/Tom Sawyer.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/War and Peace-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/War and Peace.lmao" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/dream-bin.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/text/intermediate/dream.lmao" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
